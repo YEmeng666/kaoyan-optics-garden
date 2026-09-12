@@ -1,0 +1,7 @@
+---
+import cloud from '../../content/cloud-library.json';
+import {onlinePdfUrl} from '../lib/cloud-library.mjs';
+const {source,page,class:className='button secondary pdf-link',...attributes}=Astro.props;
+const url=onlinePdfUrl(source,Number(page),cloud);
+---
+<a {...attributes} class={className} data-source={source} data-page={page} href={url||undefined} aria-disabled={url?undefined:'true'} tabindex={url?undefined:'-1'} target="_blank" rel="noopener"><slot/></a>

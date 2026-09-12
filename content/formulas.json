@@ -1,0 +1,429 @@
+[
+  {
+    "id": "intensity",
+    "title": "双光束叠加强度",
+    "latex": "I=I_1+I_2+2\\sqrt{I_1I_2}\\cos\\delta",
+    "symbols": "I₁、I₂ 为两束光单独的强度；δ 为同一观察点的总相位差。",
+    "conditions": "同频、相位关系稳定、同偏振方向；强度为时间平均。部分相干时需另乘复相干度模，正交偏振不能直接用该干涉项。",
+    "trap": "先叠加电场再取平均；只有不相干或干涉项为零时才直接加光强。",
+    "source": "叶书 5.1.1–5.1.2，书 P157–159",
+    "patterns": [
+      "phase"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "phase",
+    "title": "光程差与总相位差",
+    "latex": "\\delta=\\frac{2\\pi}{\\lambda_0}\\Delta+\\phi_0+\\phi_r",
+    "symbols": "λ₀ 为真空波长；Δ=∫₂n ds−∫₁n ds；φ₀ 为初相差；φᵣ 为两路反射附加相位之差。",
+    "conditions": "始终使用同一个路径相减次序。相位差可按 2π 取模。",
+    "trap": "若已经把半波损失折成附加光程，不再额外加 π。明纹 δ=2mπ，暗纹 δ=(2m+1)π。",
+    "source": "叶书 5.1–5.2，书 P157、162、165 起",
+    "patterns": [
+      "phase",
+      "young",
+      "shift",
+      "film"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "visibility",
+    "title": "条纹可见度",
+    "latex": "V=\\frac{I_{\\max}-I_{\\min}}{I_{\\max}+I_{\\min}}=\\frac{2\\sqrt{I_1I_2}}{I_1+I_2}|\\gamma_{12}|",
+    "symbols": "γ₁₂ 为复相干度；在同偏振、双光束且背景可忽略时使用右侧表达式。",
+    "conditions": "分母非零；探测条件固定。完全相干且等强时 V=1。",
+    "trap": "形式类似偏振度，不代表任何旋转检偏器得到的极值都能当作干涉条纹极值。",
+    "source": "叶书 5.1.2、5.6，书 P159、194 起",
+    "patterns": [
+      "phase",
+      "coherence",
+      "line-source"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "young",
+    "title": "双缝条纹间距",
+    "latex": "\\beta=\\frac{\\lambda D}{d},\\qquad x_m=\\frac{m\\lambda D}{d}",
+    "symbols": "d 为缝距；D 为缝到屏距离；λ 为传播介质中的波长；x 从等光程中心计。",
+    "conditions": "D≫d，近轴、小角度；两缝同相时右式为明纹位置。",
+    "trap": "改变整体介质时波长随之改变；一般情况下先写 Δ≈dx/D 再加入初相和附加光程。",
+    "source": "叶书 5.2.1，书 P162 起",
+    "patterns": [
+      "young"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "shift",
+    "title": "条纹移动与光程改变量",
+    "latex": "N=\\frac{|\\Delta_{\\mathrm{after}}-\\Delta_{\\mathrm{before}}|}{\\lambda_0}",
+    "symbols": "N 为固定观察点扫过的条纹周期数；Δ 为两路光程差。",
+    "conditions": "波长固定，连续改变光程差；附加相位不随过程发生额外跳变。",
+    "trap": "N 表示周期数；若题目给两端都数在内的静态亮纹条数，不一定等于间隔数。",
+    "source": "叶书 5.2、5.5.1，书 P162、188 起",
+    "patterns": [
+      "shift"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "michelson",
+    "title": "迈克耳孙镜移",
+    "latex": "N=\\frac{2n|\\Delta L|}{\\lambda_0}",
+    "symbols": "ΔL 为单臂反射镜沿光路位移；n 为该段介质折射率。",
+    "conditions": "近轴、近正入射，单臂往返；空气近似 n=1。",
+    "trap": "镜移一段，光往返两次。倾斜光线、整体换介质等问题需重新写光程。",
+    "source": "叶书 5.5.1，书 P188 起",
+    "patterns": [
+      "shift"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "film",
+    "title": "薄膜的几何光程差",
+    "latex": "\\Delta_g=2nt\\cos\\theta_t",
+    "symbols": "n 为膜折射率；t 为膜厚；θₜ 为膜内折射角；外界角度需用折射定律转换。",
+    "conditions": "平行平面薄膜，上下表面反射的两束光，比较同一出射波前。",
+    "trap": "Δg 不包含反射附加相位。不能见到薄膜就一律加 λ₀/2。",
+    "source": "叶书 5.2.2，书 P165 起",
+    "patterns": [
+      "film",
+      "wedge",
+      "coating"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "wedge",
+    "title": "等厚条纹间距",
+    "latex": "\\beta\\simeq\\frac{\\lambda_0}{2n\\alpha}",
+    "symbols": "α 为小劈尖角，以弧度代入；n 为膜内介质折射率。",
+    "conditions": "近正入射、小劈尖角、相邻同类条纹；t≈αx。",
+    "trap": "相邻亮暗纹间距是该值的一半。端点条数要先换成实际间隔数。",
+    "source": "叶书 5.2.2，书 P168 起",
+    "patterns": [
+      "wedge"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "newton",
+    "title": "牛顿环暗环半径",
+    "latex": "r_m^2=\\frac{m\\lambda_0 R}{n}",
+    "symbols": "R 为透镜曲率半径；n 为间隙折射率；m=0,1,2,…。",
+    "conditions": "理想接触、薄间隙、近正入射；反射光观察且两路反射附加相位相差 π。",
+    "trap": "有中心间隙或观察透射光时，不能直接套用暗环级次。差分法可消去固定间隙。",
+    "source": "赵凯华《新概念物理教程·光学》第三章 §3.4；叶书等厚干涉模型",
+    "patterns": [
+      "wedge"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "coating",
+    "title": "单层理想增透膜",
+    "latex": "n_f=\\sqrt{n_0n_s},\\qquad t=\\frac{(2q+1)\\lambda_0}{4n_f}",
+    "symbols": "n₀、nf、ns 分别为入射介质、膜和基底折射率；q=0,1,…。",
+    "conditions": "正入射、无吸收、设计单波长；通常 n₀<nf<ns，两界面反射相位相同。",
+    "trap": "四分之一波厚度只解决相位要求；理想零反射还需要振幅匹配。斜入射需区分 s/p。",
+    "source": "叶书 5.4.1，书 P177 起",
+    "patterns": [
+      "coating",
+      "matrix-coating"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "airy",
+    "title": "理想 F-P 透射与精细度",
+    "latex": "\\mathcal T=\\frac{1}{1+F\\sin^2(\\delta/2)},\\quad F=\\frac{4R}{(1-R)^2},\\quad \\mathscr F\\simeq\\frac{\\pi\\sqrt R}{1-R}",
+    "symbols": "R 为单面强度反射率；F 为 Airy 系数；ℱ 为精细度，二者不同。δ 为相邻透射束的相位差。",
+    "conditions": "两反射面相同、无吸收；精细度近似要求高反射率、窄峰，按峰间距/半高全宽定义。",
+    "trap": "不要把振幅反射系数 r 直接放到 R 的位置；一般无损同侧条件下 R=|r|²。",
+    "source": "叶书 5.3、5.5.3，书 P171、190 起",
+    "patterns": [
+      "fabry"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "fp-order",
+    "title": "F-P 级次与自由光谱范围",
+    "latex": "2nt\\cos\\theta_t=m\\lambda_0,\\qquad \\Delta\\nu_{\\mathrm{FSR}}=\\frac{c}{2nt}",
+    "symbols": "t 为腔长；m 为透射共振级次；ΔνFSR 为相邻纵模频率间隔。",
+    "conditions": "共振式假定反射附加相位已处理；FSR 式用于正入射、折射率色散可忽略的理想平面腔。",
+    "trap": "FSR 与最小可分辨频差不是一个量，后者在对应线宽定义下约为 FSR/ℱ。",
+    "source": "叶书 5.3、5.5.3，书 P171、190 起",
+    "patterns": [
+      "fabry"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "coherence",
+    "title": "时间相干长度估算",
+    "latex": "l_c\\sim\\frac{c}{\\Delta\\nu}\\simeq\\frac{\\lambda_0^2}{\\Delta\\lambda_0}",
+    "symbols": "Δν 或 Δλ₀ 为光谱宽度；lc 是真空中的量级估算。",
+    "conditions": "窄带近似 Δλ₀≪λ₀。精确系数取决于谱线形状、宽度定义和可见度判据。",
+    "trap": "不能把量级估计当作所有光源条纹恰好消失的严格阈值；空间相干还依赖光源角宽。",
+    "source": "叶书 5.6，书 P194 起",
+    "patterns": [
+      "coherence"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "em-basic",
+    "title": "平面波与光强",
+    "latex": "k=\\frac{2\\pi n}{\\lambda_0},\\quad I=\\frac12n\\varepsilon_0c|E_0|^2",
+    "symbols": "λ₀ 真空波长，E₀ 电场峰值。",
+    "conditions": "均匀透明、非磁性各向同性介质的平面波。",
+    "trap": "有效值场不再乘 1/2。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 4 章对应主题",
+    "patterns": [
+      "em-calculate"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "malus",
+    "title": "马吕斯定律",
+    "latex": "I=I_{\\mathrm{lin}}\\cos^2\\alpha",
+    "symbols": "α 为线偏振方向与理想检偏器透光轴夹角。",
+    "conditions": "输入已是线偏振光。",
+    "trap": "自然光先经过起偏器后强度减半。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 4 章对应主题",
+    "patterns": [
+      "polarizer-chain",
+      "faraday-rotation"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "fresnel-power",
+    "title": "界面能流比例",
+    "latex": "R=|r|^2,\\quad T=\\frac{n_2\\cos\\theta_t}{n_1\\cos\\theta_i}|t|^2",
+    "symbols": "r、t 为同一 s 或 p 电场振幅定义下的系数。",
+    "conditions": "无损、非磁性介质；传播折射波。",
+    "trap": "全反射不能直接把复折射角当作普通实角功率代入。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 4 章对应主题",
+    "patterns": [
+      "interface-power"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "special-angles",
+    "title": "临界角与布儒斯特角",
+    "latex": "\\sin\\theta_c=\\frac{n_2}{n_1}\\ (n_1>n_2),\\qquad \\tan\\theta_B=\\frac{n_2}{n_1}",
+    "symbols": "角度均从法线量起。",
+    "conditions": "透明非磁性介质；布儒斯特条件对应 p 分量。",
+    "trap": "θB 处 s 反射通常仍存在。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 4 章对应主题",
+    "patterns": [
+      "special-angle"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "single-slit",
+    "title": "单缝远场分布",
+    "latex": "\\frac{I}{I_0}=\\left(\\frac{\\sin\\beta}{\\beta}\\right)^2,\\quad\\beta=\\frac{\\pi a\\sin\\theta}{\\lambda}",
+    "symbols": "a 缝宽，I₀ 中央峰值，λ 介质波长。",
+    "conditions": "均匀照明理想单缝，远场。",
+    "trap": "β=0 取极限 1；非零整数 π 才是暗纹。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 6 章对应主题",
+    "patterns": [
+      "slit-missing"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "multiple-slit",
+    "title": "多缝因子与主极大",
+    "latex": "I\\propto\\left(\\frac{\\sin\\beta}{\\beta}\\right)^2\\left(\\frac{\\sin N\\gamma}{\\sin\\gamma}\\right)^2,\\quad\\gamma=\\frac{\\pi d\\sin\\theta}{\\lambda}",
+    "symbols": "d 中心距，N 缝数，β 由单缝宽决定。",
+    "conditions": "同宽同相等间距缝，远场。",
+    "trap": "γ=mπ 取极限 N²，并继续检查单缝包络是否为零。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 6 章对应主题",
+    "patterns": [
+      "slit-missing"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "rayleigh",
+    "title": "圆孔瑞利分辨",
+    "latex": "\\theta_R\\simeq1.22\\frac{\\lambda}{D},\\qquad d_R\\simeq0.61\\frac{\\lambda_0}{\\mathrm{NA}}",
+    "symbols": "D 圆孔直径，NA=n sin u。",
+    "conditions": "理想圆孔、指定瑞利判据；右式为显微物方尺度。",
+    "trap": "第一暗环半径不是直径；相干照明需检查适用性。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 6 章对应主题",
+    "patterns": [
+      "aperture-resolve"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "grating",
+    "title": "光栅色散与分辨",
+    "latex": "d\\sin\\theta=m\\lambda,\\quad\\frac{d\\theta}{d\\lambda}=\\frac{m}{d\\cos\\theta},\\quad\\frac{\\lambda}{\\Delta\\lambda}=|m|N",
+    "symbols": "d 光栅周期，m 级次，N 有效照明刻线数。",
+    "conditions": "正入射位置和色散式；理想光栅分辨判据。",
+    "trap": "斜入射先重写路径差，N 不一定等于整块光栅刻线数。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 6 章对应主题",
+    "patterns": [
+      "grating-resolve"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "zone-radius",
+    "title": "半波带边界",
+    "latex": "\\rho_m^2\\simeq m\\lambda\\frac{uv}{u+v},\\qquad f\\simeq\\frac{\\rho_1^2}{\\lambda}",
+    "symbols": "u、v 为轴上源距和观察距；ρ₁ 为波带片第一带半径。",
+    "conditions": "近轴标量模型；焦距式对应平面波入射主焦点。",
+    "trap": "半径与直径不可互换。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 6 章对应主题",
+    "patterns": [
+      "zone-count"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "extraordinary",
+    "title": "单轴 e 波有效折射率",
+    "latex": "\\frac1{n_e(\\theta)^2}=\\frac{\\cos^2\\theta}{n_o^2}+\\frac{\\sin^2\\theta}{n_e^2}",
+    "symbols": "θ 是波法线与光轴夹角；右侧 ne 为主值。",
+    "conditions": "透明单轴晶体的相折射率。",
+    "trap": "θ=0 应得 no；θ=90° 应得 ne。不是光线方向角。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 7 章对应主题",
+    "patterns": [
+      "crystal-index"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "retardance",
+    "title": "线性延迟片",
+    "latex": "\\delta=\\frac{2\\pi\\Delta n L}{\\lambda_0},\\qquad L_{\\lambda/4}=\\frac{\\lambda_0}{4|\\Delta n|}",
+    "symbols": "L 光程方向厚度，Δn 按两本征分量次序定义。",
+    "conditions": "正入射、均匀线性延迟片；右式为零级最小厚度。",
+    "trap": "四分之一波片还需入射等幅分解才输出圆偏振。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 7 章对应主题",
+    "patterns": [
+      "waveplate-design",
+      "polarized-transmission"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "crossed-polarizers",
+    "title": "正交检偏的透射率",
+    "latex": "\\frac{I_\\perp}{I_0}=\\sin^2(2\\alpha)\\sin^2\\frac\\delta2",
+    "symbols": "I₀ 起偏器后强度，α 起偏方向与晶片本征轴夹角。",
+    "conditions": "理想起偏器—无损延迟片—正交检偏器。",
+    "trap": "题目给自然光入射强度时，I₀ 先取其一半。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 7 章对应主题",
+    "patterns": [
+      "polarized-transmission",
+      "kdp-modulation"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "kdp-voltage",
+    "title": "KDP 纵向半波电压",
+    "latex": "V_\\pi=\\frac{\\lambda_0}{2n_o^3|r_{63}|}",
+    "symbols": "r₆₃ 采用标准电光系数约定，单位 m/V。",
+    "conditions": "光与电场沿 KDP 光轴、小信号、标准本征轴。",
+    "trap": "横向结构必须重算 L/d 及有效系数，不能套纵向式。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 7 章对应主题",
+    "patterns": [
+      "kdp-modulation"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "faraday-angle",
+    "title": "法拉第旋光角",
+    "latex": "\\theta=VBL",
+    "symbols": "V 维尔德常数，B 纵向磁感应强度，L 介质长度。",
+    "conditions": "均匀场与给定波长，按一致符号约定。",
+    "trap": "检查 V 是弧度单位还是角度单位。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 7 章对应主题",
+    "patterns": [
+      "faraday-rotation"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "beer",
+    "title": "强度吸收与消光系数",
+    "latex": "I(z)=I(0)e^{-\\alpha z},\\quad\\alpha=\\frac{4\\pi\\kappa}{\\lambda_0}",
+    "symbols": "κ 为 n+iκ 约定下消光系数；场因子 exp[i(kz−ωt)]。",
+    "conditions": "均匀单色线性吸收，I(0) 在介质内。",
+    "trap": "指数用于强度；场指数小一半。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 8 章对应主题",
+    "patterns": [
+      "absorption-fit"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "group-index",
+    "title": "群折射率",
+    "latex": "n_g=n-\\lambda_0\\frac{dn}{d\\lambda_0},\\quad v_g=\\frac c{n_g}",
+    "symbols": "n 为相折射率，自变量是真空波长。",
+    "conditions": "窄带、弱失真波包；已知有效色散关系。",
+    "trap": "不能把强吸收区的 vg 直接当信息速度。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 8 章对应主题",
+    "patterns": [
+      "dispersion-derive"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "rayleigh-ratio",
+    "title": "瑞利散射波长比例",
+    "latex": "\\frac{I_s(\\lambda_1)}{I_s(\\lambda_2)}\\simeq\\left(\\frac{\\lambda_2}{\\lambda_1}\\right)^4",
+    "symbols": "Is 为相同入射强度与观察几何下的散射强度。",
+    "conditions": "小粒子、单次散射、材料响应在两波长间近似不变。",
+    "trap": "不适用于任意大粒子或强共振。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 8 章对应主题",
+    "patterns": [
+      "scattering-compare"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "film-matrix",
+    "title": "正入射膜系特征矩阵",
+    "latex": "M_j=\\begin{pmatrix}\\cos\\beta_j&i\\sin\\beta_j/\\eta_j\\\\i\\eta_j\\sin\\beta_j&\\cos\\beta_j\\end{pmatrix},\\quad Y=\\frac{M_{21}+M_{22}\\eta_s}{M_{11}+M_{12}\\eta_s}",
+    "symbols": "ηj=nj，βj=2πnjdj/λ₀；M 按入射到基底层序相乘，连接出射侧到入射侧场。",
+    "conditions": "此矩阵取 e^{+iωt} 场约定；透明正入射无磁性膜系。",
+    "trap": "与 e^{-iωt} 约定混用时 i 符号需整体一致；反射率用 |(η₀−Y)/(η₀+Y)|²。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 5 章对应主题",
+    "patterns": [
+      "matrix-coating"
+    ],
+    "permission": "public"
+  },
+  {
+    "id": "line-coherence",
+    "title": "均匀线源的空间相干",
+    "latex": "|\\gamma|=\\left|\\frac{\\sin x}{x}\\right|,\\quad x=\\frac{\\pi b\\Theta}{\\lambda}",
+    "symbols": "b 双缝基线，Θ 沿基线方向的光源全角宽。",
+    "conditions": "近轴、准单色、均匀且各点不相干的线源；λ 与传播介质一致。",
+    "trap": "Θ 是全宽；首次零点 bΘ=λ，非所有光源通式。",
+    "source": "【AI推导／补充】标准模型表达；复核定位：叶书第 5 章对应主题",
+    "patterns": [
+      "line-source"
+    ],
+    "permission": "public"
+  }
+]

@@ -1,0 +1,5 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {patterns,href} from '../../lib/data.mjs';
+---
+<Layout title="辅助算例" active="examples"><section class="page-heading"><p class="eyebrow">辅助算例 / 第 4–8 章</p><h1>真题为主，算例辅助。</h1><p>本版为 {patterns.length} 道 AI 自拟模型算例，均明确列出条件与推导。教材原题另有定位，未在此复制。</p></section><p><a class="button" href={href('questions/')}>先练历年真题 →</a></p><div class="knowledge-grid">{patterns.map((p,i)=><a class="knowledge-card" href={href(`examples/${p.id}/`)}><p class="eyebrow">EXAMPLE {String(i+1).padStart(2,'0')} / {p.model}</p><h2>{p.title}</h2><p>{p.example.question}</p><span class="badge ai">AI 自拟 · 非真题</span></a>)}</div></Layout>

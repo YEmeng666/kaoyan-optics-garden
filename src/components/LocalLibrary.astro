@@ -1,0 +1,45 @@
+---
+import cloud from '../../content/cloud-library.json';
+---
+<section class="finder local-picker" data-pagefind-ignore aria-labelledby="connect-heading">
+  <h2 id="connect-heading">{cloud.ready?'本机资料 · 可选补充':'连接本机资料'}</h2>{cloud.ready&&<p>真题已支持云端直读，无需在此选择文件。答案、教材及本机备用版本可在这里连接。</p>}<p>选择你的 PDF，可一次多选。识别版本后，下方阅读入口会自动启用；文件只在本机浏览器内读取。</p>
+  <label for="library-files">选择教材、真题或答案 PDF</label>
+  <input id="library-files" type="file" accept=".pdf,application/pdf" multiple aria-describedby="local-help"/>
+  <p id="local-help" class="source">本机连接在当前会话有效，刷新后需要重新选择。可选择文件夹中的同名资料，或内容相同的改名副本。在此选择的文件不会上传云端，也不会跨设备同步。</p>
+  <div class="filter-row"><span id="library-status" role="status" aria-live="polite">{cloud.ready?'原题可直接在线阅读；其他本机资料尚未连接。':'尚未连接资料，阅读入口暂不可用。'}</span><button id="library-reset" class="button secondary" disabled>断开已选文件</button></div>
+  <ul id="library-messages" class="source" aria-live="polite"></ul>
+  <noscript><p class="warning">需要启用 JavaScript 才能连接本机 PDF；也可根据下方页码在阅读器中手动跳转。</p></noscript>
+</section>
+<script>
+import library from '../../content/library.json';
+import cloud from '../../content/cloud-library.json';
+import {onlinePdfUrl} from '../lib/cloud-library.mjs';
+import {identifySource,pdfPageUrl} from '../lib/library.mjs';
+const picker=document.querySelector<HTMLInputElement>('#library-files')!;
+const reset=document.querySelector<HTMLButtonElement>('#library-reset')!;
+const status=document.querySelector('#library-status')!;
+const messages=document.querySelector('#library-messages')!;
+const urls=new Map<string,string>();
+const links=[...document.querySelectorAll<HTMLAnchorElement>('.pdf-link')];
+function update(){
+ for(const link of links){const source=library.sources.find(s=>s.id===link.dataset.source)!;const url=urls.get(source.id);if(url){link.href=pdfPageUrl(url,Number(link.dataset.page),source.pages);link.removeAttribute('aria-disabled');link.removeAttribute('tabindex');}else if(onlinePdfUrl(source.id,Number(link.dataset.page),cloud)){link.href=onlinePdfUrl(source.id,Number(link.dataset.page),cloud)!;link.removeAttribute('aria-disabled');link.removeAttribute('tabindex');}else{link.removeAttribute('href');link.setAttribute('aria-disabled','true');link.tabIndex=-1;}}
+ document.querySelectorAll<HTMLElement>('[data-connection]').forEach(el=>{el.textContent=urls.has(el.dataset.connection!)?'已连接 · 本机会话':cloud.ready&&el.dataset.connection===cloud.sourceId?'云端年度文件 · 可直接阅读':'未连接';});
+ status.textContent=urls.size?`已连接 ${urls.size} / ${library.sources.length} 份资料，可打开对应阅读入口。`:(cloud.ready?'原题可直接在线阅读；其他本机资料尚未连接。':'尚未连接资料，阅读入口暂不可用。');reset.disabled=!urls.size;
+}
+picker.addEventListener('change',async()=>{
+ const files=[...picker.files??[]];picker.disabled=true;reset.disabled=true;messages.replaceChildren();
+ for(const [i,file] of files.entries()){
+  status.textContent=`正在识别 ${i+1} / ${files.length}：${file.name}`;
+  const li=document.createElement('li');
+  try{const source=await identifySource(file,library.sources);if(!source){li.textContent=`未收录或版本不同：${file.name}。未套用现有页码。`;}else if(urls.has(source.id)){li.textContent=`已连接，跳过重复文件：${file.name}`;}else{urls.set(source.id,URL.createObjectURL(file));li.textContent=`已连接：${source.title}`;}}
+  catch{li.textContent=`无法读取：${file.name}。请重新选择可读取的本机 PDF，并使用 HTTPS 或本地预览打开网站。`;}
+  messages.append(li);
+ }
+ picker.value='';picker.disabled=false;update();
+});
+reset.addEventListener('click',()=>{for(const url of urls.values())URL.revokeObjectURL(url);urls.clear();messages.replaceChildren();update();});
+update();
+links.forEach(link=>link.addEventListener('click',event=>{if(link.getAttribute('aria-disabled')==='true')event.preventDefault();}));
+
+</script>
+<style>.local-picker h2{margin-bottom:10px}.local-picker>p{font-size:.9rem}.local-picker input{display:block;max-width:100%;margin:12px 0;color:var(--muted);font-size:.875rem}.local-picker input::file-selector-button{border:0;border-radius:6px;padding:10px 16px;margin-right:12px;background:var(--green);color:white;cursor:pointer}.local-picker .filter-row{margin:16px 0 0;justify-content:space-between}button:disabled{opacity:.5;cursor:not-allowed}</style>

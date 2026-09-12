@@ -1,0 +1,198 @@
+{
+  "sourceId": "exam",
+  "sourceSha256": "5bc2f4bfaba1b8294133ed4409c268267491f96d7ec980b87b63e6a34a9693ee",
+  "files": [
+    {
+      "year": 2008,
+      "kind": "scan",
+      "file": "exams/2008.pdf",
+      "sourcePages": [
+        15,
+        19
+      ],
+      "pages": 5,
+      "bytes": 3942356,
+      "sha256": "e78540ba7868a5669db214cbccac7d2912ed7b2b77b1e90b6c162cfdcd4314bc"
+    },
+    {
+      "year": 2009,
+      "kind": "scan",
+      "file": "exams/2009.pdf",
+      "sourcePages": [
+        20,
+        24
+      ],
+      "pages": 5,
+      "bytes": 4482890,
+      "sha256": "888f717dbe0ae6e49fb1bd12f14b3d993c375b43d802be28039bd93bc381d7a4"
+    },
+    {
+      "year": 2010,
+      "kind": "scan",
+      "file": "exams/2010.pdf",
+      "sourcePages": [
+        25,
+        30
+      ],
+      "pages": 6,
+      "bytes": 4279025,
+      "sha256": "a5e9ec6cf73d163e31a8ea2a61349bcc62fc5edf229493bbaa91580fcaca704d"
+    },
+    {
+      "year": 2011,
+      "kind": "scan",
+      "file": "exams/2011.pdf",
+      "sourcePages": [
+        31,
+        35
+      ],
+      "pages": 5,
+      "bytes": 3371542,
+      "sha256": "dac4a82306271282769660520016a33f406b1109601312ff6258b81fd7ca46ca"
+    },
+    {
+      "year": 2012,
+      "kind": "scan",
+      "file": "exams/2012.pdf",
+      "sourcePages": [
+        36,
+        40
+      ],
+      "pages": 5,
+      "bytes": 4130678,
+      "sha256": "7f743ea1514683c914340c966c4998f9a6988328c0bde83dec8e5541dc962d28"
+    },
+    {
+      "year": 2013,
+      "kind": "scan",
+      "file": "exams/2013.pdf",
+      "sourcePages": [
+        41,
+        45
+      ],
+      "pages": 5,
+      "bytes": 4190616,
+      "sha256": "d896e67c6f88e4ef84e72a3df418e2e57126b4d1ad9f4c11fba003821be7e769"
+    },
+    {
+      "year": 2014,
+      "kind": "scan",
+      "file": "exams/2014.pdf",
+      "sourcePages": [
+        46,
+        50
+      ],
+      "pages": 5,
+      "bytes": 4624940,
+      "sha256": "f571a0d74e2270ed3a084b9911c7b9f15a3a3bb8a91ac9a982e816f9481622f6"
+    },
+    {
+      "year": 2015,
+      "kind": "scan",
+      "file": "exams/2015.pdf",
+      "sourcePages": [
+        51,
+        56
+      ],
+      "pages": 6,
+      "bytes": 4381282,
+      "sha256": "2e52009158c93f0cef577e16c1fc44dbb49dd567823e7ab29a304cef1ca3ad62"
+    },
+    {
+      "year": 2016,
+      "kind": "scan",
+      "file": "exams/2016.pdf",
+      "sourcePages": [
+        57,
+        64
+      ],
+      "pages": 8,
+      "bytes": 6499977,
+      "sha256": "aa19839b4a99aa1d1cdd8039f1fb2107b91028954dbba63bfaca168aae08608a"
+    },
+    {
+      "year": 2017,
+      "kind": "example",
+      "file": "exams/2017.pdf",
+      "sourcePages": [
+        65,
+        76
+      ],
+      "pages": 12,
+      "bytes": 9616611,
+      "sha256": "5281cc8d4ae4ad66128b378014bfd0f89686198b709c19e0a555c89c22715045"
+    },
+    {
+      "year": 2018,
+      "kind": "recall",
+      "file": "exams/2018.pdf",
+      "sourcePages": [
+        77,
+        79
+      ],
+      "pages": 3,
+      "bytes": 1671012,
+      "sha256": "f9aca33d16183a957d1066eee3a8619e6f3f6457f7b871cfbb6a0f02bafab02f"
+    },
+    {
+      "year": 2019,
+      "kind": "recall",
+      "file": "exams/2019.pdf",
+      "sourcePages": [
+        80,
+        82
+      ],
+      "pages": 3,
+      "bytes": 2205385,
+      "sha256": "2d3d3bda127a9fb34e4c7411b1bea74b6b262212d2b2173896e2dcb514dde5a2"
+    },
+    {
+      "year": 2020,
+      "kind": "recall",
+      "file": "exams/2020.pdf",
+      "sourcePages": [
+        83,
+        85
+      ],
+      "pages": 3,
+      "bytes": 2252289,
+      "sha256": "c8d67a203625e70776ef5e21ed3cdd4acffe42e36700209b6e4592565c031e67"
+    },
+    {
+      "year": 2021,
+      "kind": "recall",
+      "file": "exams/2021.pdf",
+      "sourcePages": [
+        86,
+        88
+      ],
+      "pages": 3,
+      "bytes": 2014940,
+      "sha256": "ab217442eceb595565dbf66750e8e31b982777c6cfd06e08b3450845617a8ff1"
+    },
+    {
+      "year": 2022,
+      "kind": "recall",
+      "file": "exams/2022.pdf",
+      "sourcePages": [
+        89,
+        94
+      ],
+      "pages": 6,
+      "bytes": 4032954,
+      "sha256": "68db175f2e8aab65fa78d1239ea899c163be3ed903de6addd8325ceebcd8ac40"
+    },
+    {
+      "year": 2023,
+      "kind": "recall",
+      "file": "exams/2023.pdf",
+      "sourcePages": [
+        95,
+        101
+      ],
+      "pages": 7,
+      "bytes": 5002367,
+      "sha256": "5bece2ed94013d4352722557638368525aa797f9ba00dac1c3596eee49828aac"
+    }
+  ]
+}

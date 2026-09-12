@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {patterns,href} from '../lib/data.mjs';
+---
+<Layout title="题眼速查"><article data-pagefind-body><div class="page-heading"><p class="eyebrow" data-pagefind-meta="type">题眼索引</p><h1 data-pagefind-meta="title">看到条件，先问什么？</h1><p>关键词只是入口，最终模型还要通过适用条件检查。</p></div><div class="related-list">{patterns.map(p=><a class="knowledge-card" href={href(`patterns/${p.id}/`)}><h2>{p.cues.join(' / ')}</h2><p>{p.first}</p><span class="badge">{p.model} → {p.title}</span></a>)}</div></article></Layout>

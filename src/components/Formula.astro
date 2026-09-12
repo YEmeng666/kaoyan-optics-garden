@@ -1,0 +1,7 @@
+---
+import katex from 'katex';
+import {href} from '../lib/data.mjs';
+const {formula:f}=Astro.props;
+const math=katex.renderToString(f.latex,{displayMode:true,throwOnError:true,output:'htmlAndMathml'});
+---
+<section class="formula" id={f.id} data-patterns={f.patterns.join(' ')}><h3>{f.title}</h3><div class="math" set:html={math}/><dl><dt>符号</dt><dd>{f.symbols}</dd><dt>适用条件</dt><dd>{f.conditions}</dd><dt>容易误用</dt><dd>{f.trap}</dd></dl><p class="source">{f.source.startsWith('【')?'':'【根据资料整理】'}{f.source}</p><a class="inline-link source" href={href(`formulas/#${f.id}`)}>公式固定链接 ↗</a></section>

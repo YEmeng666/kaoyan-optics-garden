@@ -1,0 +1,4 @@
+---
+const {example:e,open=false}=Astro.props;
+---
+<div class="example-box"><span class="badge ai">AI 自拟算例 · 非历年真题</span><p>{e.question}</p><details open={open}><summary>展开推导与答案</summary><p class="source">【AI推导】用于检验当前模型；数值与公式已做程序交叉检查，未经过教师审校。</p><ol class="steps">{e.steps.map(step=><li>{step}</li>)}</ol><p class="answer">{e.answer}</p><p><strong>结果检查：</strong>{e.check}</p></details></div>

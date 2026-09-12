@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import questionData from '../../../content/questions.json';
+import {course,knowledge,patterns,href} from '../../lib/data.mjs';
+export function getStaticPaths(){return course.chapters.map(chapter=>({params:{id:chapter.id},props:{chapter}}));}
+const {chapter:ch}=Astro.props;
+const questionCount=questionData.questions.filter(q=>q.chapter===ch.id&&q.sourceKind!=='approximation').length;
+const chapterKnowledge=knowledge.filter(k=>k.chapter===ch.id);
+const chapterPatterns=patterns.filter(p=>p.chapter===ch.id);
+---
+<Layout title={ch.title} active={`chapter-${ch.id}`}><article data-pagefind-body><section class="page-heading"><p class="eyebrow" data-pagefind-meta="type">章节导航 / CHAPTER 0{ch.id}</p><h1 data-pagefind-meta="title">{ch.title}</h1><p>{ch.description}</p></section><p class="notice">{course.outlineNote}</p><div class="section-head"><h2>大纲对应主题</h2><span>{ch.status}</span></div><ul class="scope-list">{ch.topics.map((t,i)=><li><span>0{i+1}</span>{t}</li>)}</ul><p class="source">【根据资料整理】{ch.source}；参照电子科技大学 2026 版 840 大纲对应模块。</p>
+<section class="learning-strip"><div><h2>本章历年题目</h2><p>{questionCount} 条汇编与回忆题记录，按考点和年份筛选。</p></div><a class="button" href={href(`questions/?chapter=${ch.id}`)}>练本章真题 →</a></section>
+<div class="section-head"><h2>知识与专题</h2><span>{chapterKnowledge.length} 个主题</span></div><div class="knowledge-grid">{chapterKnowledge.map(k=><a class="knowledge-card" href={href(`knowledge/${k.id}/`)}><span class="badge">{k.label}</span><h2>{k.title}</h2><p>{k.summary}</p></a>)}</div>
+<div class="section-head"><h2>本章解题方法</h2><span>{chapterPatterns.length} 类题型</span></div><div class="related-list">{chapterPatterns.map(p=><a class="related-link" href={href(`patterns/${p.id}/`)}><span><strong>{p.title}</strong><br/>{p.first}</span><span>看步骤 →</span></a>)}</div><p class="source">先独立练真题，再查模型与步骤。新增专题为 AI 补充解释，教材定位用于复核；自拟算例不作为真题答案。</p></article></Layout>

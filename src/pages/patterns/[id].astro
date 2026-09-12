@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Formula from '../../components/Formula.astro';
+import Example from '../../components/Example.astro';
+import questionData from '../../../content/questions.json';
+import {patterns,formulas,knowledge,href} from '../../lib/data.mjs';
+export function getStaticPaths(){return patterns.map(pattern=>({params:{id:pattern.id},props:{pattern}}));}
+const {pattern:p}=Astro.props;
+const k=knowledge.find(k=>k.id===p.knowledge);
+const pastQuestions=questionData.questions.filter(q=>q.patterns.includes(p.id)&&q.sourceKind!=='approximation').sort((a,b)=>b.year-a.year);
+const variants={phase:'如果改为正交偏振，先检查共同投影；不要沿用原有干涉项。',young:'如果整体浸入介质，用介质中的波长重算间距；单臂加片则转入光程变化。',shift:'把单程改成往返，改变量的倍数会变化；方向问题必须保留相减符号。',film:'把基底换成不同折射率，先重判附加相位；不要只替换 n。',wedge:'把半径改成直径，平方差会多出 4；中心间隙可尝试用级次差消去。',coating:'膜材料不满足折射率匹配时，不能继续声称零反射。',fabry:'题目给振幅反射系数时先换算 R；换分辨判据时重新求峰宽条件。',coherence:'改变谱宽与改变光源角宽分别走时间与空间相干模型。'};
+const anchors={phase:'可对照叶书 5.1.2（书 P158–159）的干涉强度与可见度。',young:'可对照叶书习题 5-1、5-2（书 P203）；本版未复制原题和答案。',shift:'可对照叶书例 5-1（书 P201–202）、例 5-5（书 P203）。',film:'可对照叶书例 5-2（书 P202）。',wedge:'可对照叶书例 5-3（书 P202）；条纹条数与间隔数需结合题干核对。',coating:'可对照叶书 5.4.1（书 P177 起）；公开代表题尚待补充有明确许可的题目。',fabry:'可对照叶书例 5-6（书 P203）；原题的 r/R 与分辨判据仍需逐条精校。',coherence:'可对照叶书 5.6（书 P194 起）；空间相干的具体题型仍需补充清晰完整题目。'};
+---
+<Layout title={p.title}><div class="breadcrumb" data-pagefind-ignore><a href={href()}>题眼与方法</a> / 第 {p.chapter} 章 / {p.title}</div><article data-pagefind-body><div class="page-heading"><span class="badge" data-pagefind-meta="type">题型 · SOP</span><span class="badge">{p.label||'根据资料整理'}</span><h1 data-pagefind-meta="title">{p.title}</h1><p>{p.cues.join(' · ')}</p></div><div class="detail-grid"><div class="detail-content"><section class="lead-step"><p class="eyebrow">第一步 / {p.model}</p><h2>{p.first}</h2></section>
+<section class="article-section" id="sop"><h2>按这个顺序解题</h2><ol class="steps">{p.steps.map(s=><li>{s}</li>)}</ol><div class="warning"><strong>先检查这两处</strong><ul>{p.traps.map(t=><li>{t}</li>)}</ul></div></section>
+<section class="article-section" id="formulas"><h2>公式与适用条件</h2>{p.formulas.map(id=><Formula formula={formulas.find(f=>f.id===id)}/>)}</section>
+<section class="article-section" id="past-questions"><h2>本题型的历年题目</h2><p>先做原题，再判断是否适用上面的模型。关联表示考点相关，不保证每题条件都相同；年份与题号来自汇编，回忆版另有标记。</p><p>{pastQuestions.length===0?'当前没有精确关联到此模型的逐题记录，可从对应章节真题开始；不据此推断从未考过。':''}</p><div class="related-list">{pastQuestions.slice(0,5).map(q=><a class="related-link" href={href(`questions/?pattern=${p.id}#${q.id}`)}><span><strong>{q.year} · {q.section}{q.number}</strong><br/>{q.title}<br/><small>{q.sourceKind==='recall'?'回忆版':'汇编版'} · 原题 PDF {q.questionPage}</small></span><span>→</span></a>)}</div><p class="source"><a class="inline-link" href={href(`questions/?pattern=${p.id}`)}>查看本题型全部 {pastQuestions.length} 条记录 →</a></p></section>
+<section class="article-section" id="example"><h2>辅助算例：检查模型与单位</h2><Example example={p.example}/><p class="source">这是辅助检查算例，不替代真题训练。<a class="inline-link" href={href(`examples/${p.id}/`)}>打开辅助算例独立页</a></p></section>
+<section class="article-section" id="variant"><h2>条件变了，哪里先变？</h2><span class="badge ai">AI 补充解释</span><p>{p.variant||variants[p.id]}</p><a class="related-link" href={href(`knowledge/${k.id}/`)}>回到知识点：{k.title} <span>→</span></a></section>
+<section class="article-section" id="source"><h2>依据与教材练习定位</h2><p>【{p.label||'根据资料整理'}】{p.source}。</p><p>{anchors[p.id]||'专题步骤为 AI 补充解释；请结合教材对应主题核对符号与约定。'}</p><p class="source">教材页码是印刷页码。网站只提供原创重述与引用定位；未复制教材扫描、真题汇编或既有冲刺稿。</p></section>
+<section class="article-section"><h2>相似题型，比较着看</h2><div class="related-list">{p.related.map(id=>{const related=patterns.find(p=>p.id===id);return <a class="related-link" href={href(`patterns/${id}/`)}>{related.title}<span>{related.model} →</span></a>;})}</div></section></div>
+<nav class="detail-aside" aria-label="本页目录" data-pagefind-ignore><strong>本页路径</strong><a href="#sop">解题步骤</a><a href="#formulas">公式与边界</a><a href="#past-questions">历年题目</a><a href="#example">辅助算例</a><a href="#variant">条件变式</a><a href="#source">来源定位</a></nav></div></article></Layout>

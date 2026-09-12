@@ -1,0 +1,8 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Example from '../../components/Example.astro';
+import {patterns,href} from '../../lib/data.mjs';
+export function getStaticPaths(){return patterns.map(pattern=>({params:{id:pattern.id},props:{pattern}}));}
+const {pattern:p}=Astro.props;
+---
+<Layout title={`算例：${p.title}`}><article class="prose" data-pagefind-body><div class="page-heading"><p class="eyebrow" data-pagefind-meta="type">自拟例题 / AI 推导</p><h1 data-pagefind-meta="title">算例：{p.title}</h1><p>先自行判断模型，再展开推导核对。</p></div><Example example={p.example} open/><h2>为什么归入这个题型？</h2><p>【AI补充解释】该例采用“{p.model}”模型，关键入口是：{p.first}</p><a class="button" href={href(`patterns/${p.id}/`)}>回到题型、公式与条件 →</a></article></Layout>

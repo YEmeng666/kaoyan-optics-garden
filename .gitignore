@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+*.pdf
+!public/materials/exams/*.pdf
+*.docx
+private/
+_ocr_preview/
+.openai/*
+!.openai/hosting.json

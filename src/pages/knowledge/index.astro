@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {course,knowledge,patterns,href} from '../../lib/data.mjs';
+---
+<Layout title="知识与专题地图" active="knowledge"><section class="page-heading"><p class="eyebrow">第 4–8 章 / 知识与解题联系</p><h1>从章节找知识，从题目找方法。</h1><p>{knowledge.length} 个知识主题 · {patterns.length} 类解题方法。按大纲模块复习，沿相关真题检查理解。</p></section>
+<div class="chips" aria-label="跳到章节">{course.chapters.map(ch=><a class="chip" href={`#chapter-${ch.id}`}>第 {ch.id} 章 · {ch.title}</a>)}</div>
+<div class="map-flow" aria-label="跨章学习关系"><a href={href('knowledge/em-wave/')}>光场与界面</a><span>→</span><a href={href('knowledge/conditions/')}>叠加与干涉</a><span>→</span><a href={href('knowledge/diffraction-models/')}>孔径与衍射</a><span>→</span><a href={href('knowledge/waveplates-jones/')}>晶体与偏振</a><span>→</span><a href={href('knowledge/lorentz-index/')}>介质响应</a></div>
+{course.chapters.map(ch=><section id={`chapter-${ch.id}`}><div class="section-head"><h2>第 {ch.id} 章 · {ch.title}</h2><a href={href(`chapters/${ch.id}/`)}>章节与真题 →</a></div><div class="knowledge-grid">{knowledge.filter(k=>k.chapter===ch.id).map(k=><a class="knowledge-card" href={href(`knowledge/${k.id}/`)}><p class="eyebrow">{k.section} / {k.label}</p><h2>{k.title} ↗</h2><p>{k.summary}</p></a>)}</div></section>)}
+<p class="source">专题序号是本站组织顺序，不是教材小节号。范围依据所提供的 2026 版大纲，内容不等于官方答案或对新届次考试范围的确认。</p></Layout>

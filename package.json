@@ -1,0 +1,14 @@
+{
+  "name": "kaoyan-optics-garden",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "node scripts/validate.mjs && astro build && pagefind --site dist && node scripts/check-output.mjs && node scripts/check-search.mjs",
+    "preview": "astro preview --host 127.0.0.1",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {"astro":"7.3.2", "katex":"0.18.7", "pagefind":"1.4.0"},
+  "engines": {"node": ">=22.12.0"}
+}

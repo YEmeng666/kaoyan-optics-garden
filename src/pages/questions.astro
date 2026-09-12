@@ -1,0 +1,64 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LocalLibrary from '../components/LocalLibrary.astro';
+import SourceLink from '../components/SourceLink.astro';
+import cloud from '../../content/cloud-library.json';
+import data from '../../content/questions.json';
+import {course,patterns,href} from '../lib/data.mjs';
+import {typeLabels,sourceLabels} from '../lib/questions.mjs';
+const questions=[...data.questions].sort((a,b)=>b.year-a.year);
+const years=data.coverage.map(y=>y.year).reverse();
+const topics=[...new Set(questions.map(q=>q.topic))];
+const regular=questions.filter(q=>q.sourceKind!=='approximation');
+---
+<Layout title="历年真题 · 按章节和题型练习" active="questions" description="840 物理光学历年题目分类，标明年份、原题号、章节、考点与 PDF 页序，回忆版和辅助近似题分开显示。">
+<section class="page-heading"><p class="eyebrow">历年真题 / 主要练习来源</p><h1>按考点练，按年份回看。</h1><p>15 个年份 · {regular.length} 条汇编与回忆题记录 · 1 条近似题单列辅助</p></section>
+<section class="finder question-filters" aria-label="题目筛选" data-pagefind-ignore>
+<label for="question-query">查找题目</label><div class="search-row"><input id="question-query" type="search" placeholder="例如：2021 牛顿环、半波损失、偏振度…" autocomplete="off"/></div>
+<div class="filter-grid">
+<label>章节<select id="question-chapter"><option value="">全部章节</option>{course.chapters.map(c=><option value={c.id}>第{c.id}章 · {c.title}</option>)}</select></label>
+<label>考点<select id="question-topic"><option value="">全部考点</option>{topics.map(t=><option value={t}>{t}</option>)}</select></label>
+<label>年份<select id="question-year"><option value="">全部年份</option>{years.map(y=><option value={y}>{y}</option>)}</select></label>
+<label>题型<select id="question-type"><option value="">全部题型</option>{Object.entries(typeLabels).map(([v,t])=><option value={v}>{t}</option>)}</select></label>
+<label>来源<select id="question-source"><option value="past">历年题目（含回忆）</option><option value="compilation">汇编版 · 2008–2016</option><option value="recall">回忆版 · 2018–2023</option><option value="approximation">辅助近似题 · 非真题</option><option value="all">全部记录</option></select></label>
+<label>解题方法<select id="question-pattern"><option value="">全部方法</option>{patterns.map(p=><option value={p.id}>{p.title}</option>)}</select></label>
+</div><div class="filter-row"><span id="question-count" role="status" aria-live="polite">{regular.length} 条记录</span><button id="question-clear" class="button secondary">清除筛选</button></div>
+</section>
+{cloud.ready&&<p class="notice">原题已按年份放到公开云端，点击即可阅读；页面标注原汇编页码，链接自动换算年度文件页码。参考答案和教材仍需连接本机 PDF。</p>}
+<details class="reader-toggle" id="connect"><summary>{cloud.ready?'补充连接本机答案与教材（原题已支持在线阅读）':'连接本机真题和答案 PDF，启用原题阅读'}</summary><LocalLibrary/></details>
+<p class="notice">分类标题是考点概括，完整题干与图请点“读原题”。答案入口打开该年度参考答案范围，尚未逐题定位或精校。回忆不全、存疑和近似题均保留提示；条目数量不等于已核实考频。</p>
+<noscript><p class="warning">筛选及本机阅读需要 JavaScript；下方仍可查看默认历年题目记录与页码。</p></noscript>
+<div id="question-empty" class="empty" hidden><h2>没有匹配的题目</h2><p>减少筛选条件，或点击“清除筛选”。</p></div>
+<section class="question-list" aria-label="题目列表" data-pagefind-body><h2 class="list-title">历年题目分类</h2>{questions.map(q=><article class="question-card" id={q.id} data-question-id={q.id} hidden={q.sourceKind==='approximation'}>
+<div class="question-meta"><strong>{q.sourceKind==='approximation'?`${q.year} 汇编收录`:`${q.year} 年`}</strong><span>{q.section} · {q.number==='未编号'?'原册未编号':`第 ${q.number} 题`}</span><span class:list={['badge',{'ai':q.sourceKind!=='compilation'}]}>{sourceLabels[q.sourceKind]}</span></div>
+<h3>{q.title}</h3><p class="question-tags">第 {q.chapter} 章 · {course.chapters.find(c=>c.id===q.chapter)?.title} <span>／ {q.topic}</span></p>
+{q.notes.length>0&&<p class="question-note">{q.notes.join(' ')}</p>}
+<div class="question-actions"><SourceLink class="button secondary pdf-link" source="exam" page={q.questionPage} aria-label={`打开${q.year}汇编${q.section}${q.number}${q.sourceKind==='approximation'?'近似题':'题目'}PDF第${q.questionPage}页`}>{q.sourceKind==='approximation'?'读近似题':'读原题'} · PDF {q.questionPage}</SourceLink><SourceLink class="button secondary pdf-link" source="answers" page={q.answerPages[0]}>本年参考答案 · PDF {q.answerPages.join('–')}</SourceLink><a class="inline-link" href={href(`library/#year-${q.year}`)}>整卷定位</a></div>
+{q.patterns.length>0&&<p class="question-methods">相关考点方法：{q.patterns.map(id=><a href={href(`patterns/${id}/`)}>{patterns.find(p=>p.id===id)?.title}</a>)}</p>}
+</article>)}</section>
+<details class="coverage-note"><summary>查看覆盖范围与缺题说明</summary><ul>{data.scopeNotes.map(note=><li>{note}</li>)}</ul><div class="coverage-years">{data.coverage.map(y=><span>{y.year}：{y.entries} 条</span>)}</div></details>
+<section class="learning-strip"><div><h2>模型算例，作为辅助检查。</h2><p>先练历年题，卡住时对照解题方法，再用简短自拟算例检查单位和适用条件。</p></div><a class="button secondary" href={href('examples/')}>辅助算例 →</a></section>
+<script>
+import data from '../../content/questions.json';
+import {matchesQuestion} from '../lib/questions.mjs';
+const keys=['query','chapter','topic','year','type','source','pattern'];
+const controls=Object.fromEntries(keys.map(k=>[k,document.querySelector<HTMLInputElement|HTMLSelectElement>(`#question-${k}`)!]));
+const cards=new Map([...document.querySelectorAll<HTMLElement>('[data-question-id]')].map(el=>[el.dataset.questionId,el]));
+const url=new URL(window.location.href);
+for(const key of keys){const value=url.searchParams.get(key);if(value!==null){const control=controls[key];if(control instanceof HTMLSelectElement){if([...control.options].some(option=>option.value===value))control.value=value;}else control.value=value;}}
+function applyFilter(sync=true){
+ const state=Object.fromEntries(keys.map(key=>[key,controls[key].value]));let count=0;
+ for(const question of data.questions){const shown=matchesQuestion(question,state);cards.get(question.id)!.hidden=!shown;if(shown)count++;}
+ document.querySelector('#question-count')!.textContent=`${count} 条记录`;
+ document.querySelector<HTMLElement>('#question-empty')!.hidden=count>0;
+ if(sync){const next=new URL(window.location.href);for(const key of keys){if(state[key]&&(key!=='source'||state[key]!=='past'))next.searchParams.set(key,state[key]);else next.searchParams.delete(key);}next.hash='';history.replaceState(null,'',next);}
+}
+for(const key of keys)controls[key].addEventListener(key==='query'?'input':'change',()=>applyFilter());
+document.querySelector('#question-clear')!.addEventListener('click',()=>{for(const key of keys)controls[key].value=key==='source'?'past':'';applyFilter();});
+applyFilter(false);
+if(url.hash){const target=document.getElementById(decodeURIComponent(url.hash.slice(1)));if(target?.matches('[data-question-id]')&&!target.hidden)target.scrollIntoView({block:'center'});}
+</script>
+<style>
+.filter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.filter-grid label{font-size:.875rem;display:grid;gap:6px}.filter-grid select{width:100%;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:6px;padding:9px;font-size:.875rem}.question-filters .filter-row{justify-content:space-between;margin-bottom:0}.reader-toggle{margin:18px 0}.reader-toggle>summary,.coverage-note>summary{cursor:pointer;color:var(--green);font-size:.9rem;font-weight:600;padding:10px 0}.reader-toggle .finder{margin-top:12px}.question-list{display:grid;gap:13px}.list-title{margin:16px 0 2px}.question-card{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:22px;scroll-margin:20px}.question-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:.875rem;margin-bottom:10px}.question-meta strong{font-size:1.05rem}.question-meta .badge{margin:0;font-size:.8rem}.question-card h3{font-size:1.06rem}.question-tags{color:var(--muted);font-size:.875rem;margin:8px 0 13px}.question-note{border-left:3px solid #b99361;padding-left:12px;color:#835d32;font-size:.875rem}.question-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.875rem}.question-actions .button{font-size:.875rem}.pdf-link[aria-disabled=true]{opacity:.45;cursor:not-allowed}.question-methods{font-size:.875rem;margin:14px 0 0}.question-methods a{text-decoration:underline;margin-right:14px;text-underline-offset:3px}.coverage-note{margin-top:24px;font-size:.875rem}.coverage-years{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted)}@media(max-width:750px){.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.question-card{padding:17px}.question-actions{align-items:flex-start;flex-direction:column}}
+</style>
+</Layout>

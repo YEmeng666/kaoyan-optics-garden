@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LocalLibrary from '../components/LocalLibrary.astro';
+import SourceLink from '../components/SourceLink.astro';
+import cloud from '../../content/cloud-library.json';
+import library from '../../content/library.json';
+import {href} from '../lib/data.mjs';
+const sources=[...library.sources].sort((a,b)=>['exam','answers','extended','zhao-exercises','physics-exercises','applied-exercises','ye','zhao'].indexOf(a.id)-['exam','answers','extended','zhao-exercises','physics-exercises','applied-exercises','ye','zhao'].indexOf(b.id));
+const years=[...library.years].reverse();
+const range=(pages)=>`${pages[0]}–${pages[1]}`;
+---
+<Layout title="资料库 · 历年真题与参考答案" active="library" description="840 物理光学资料库：按年份配对历年试题与参考答案，整理教材习题和拓展练习，连接本机 PDF 阅读。">
+<div data-pagefind-body>
+<section class="page-heading"><p class="eyebrow">LIBRARY / 学习资料</p><h1>找一年的题，接着核对答案。</h1><p>15 个试题年份 · 1 组考点示例 · 4 份补充练习 · 2 本教材</p></section>
+<p><a class="button" href={href('questions/')}>按章节和题型练历年真题 →</a></p>
+<LocalLibrary/>
+{cloud.ready&&<p class="notice">试题可直接在线打开。下方页码沿用原汇编，云端链接会自动换算为年度 PDF 页码；若未自动跳页，年度文件的第一页即为该年试题起点。参考答案和教材需连接本机文件。</p>}
+{cloud.ready&&<p><a href={`${cloud.repository}/tree/main/public/materials/exams`} target="_blank" rel="noopener noreferrer">在 GitHub 查看年度 PDF 副本 ↗</a></p>}
+<section aria-labelledby="years-heading">
+<div class="section-head"><h2 id="years-heading">历年真题与配套参考答案</h2><span>按 PDF 页序定位</span></div>
+<p class="notice">参考答案来自第三方汇编，未逐题校核，部分文字被广告遮挡。页码是阅读器从 1 开始的页序；若阅读器未自动跳页，请按标注页序手动定位。2017 仅为考点示例，不能当作当年原题。</p>
+<div class="filter-row" data-pagefind-ignore><label for="year-kind">显示类型</label><select id="year-kind"><option value="all">全部年份</option><option value="scan">试卷扫描 · 2008–2016</option><option value="recall">回忆版 · 2018–2023</option><option value="example">考点示例 · 2017</option></select><span id="year-count" role="status">16 条年度记录</span></div>
+<div class="library-years">{years.map(y=><article class="year-card" data-kind={y.kind} id={`year-${y.year}`}><div class="year-heading"><h3>{y.year}</h3><span class:list={['badge',{'ai':y.kind!=='scan'}]}>{y.label}</span></div><div class="year-actions"><SourceLink class="button secondary pdf-link" source="exam" page={y.question[0]} aria-label={`${y.year} ${y.kind==='example'?'考点示例':'试题'}，PDF 第 ${range(y.question)} 页`}>{y.kind==='example'?'打开示例':'打开试题'} <small>PDF {range(y.question)}</small></SourceLink><SourceLink class="button secondary pdf-link" source="answers" page={y.answer[0]} aria-label={`${y.year} 参考答案，PDF 第 ${range(y.answer)} 页`}>参考答案 <small>PDF {range(y.answer)}</small></SourceLink></div><p class="source">{y.answerStatus}</p></article>)}</div>
+<div class="warning"><p><strong>缺失年份</strong>：2024 年两册均只有“编写中”通知（试题 PDF 102、答案 PDF 88），没有实际题目或答案。封面“2025”是资料年份，正文未发现 2025 年试卷。</p></div>
+</section>
+<section aria-labelledby="sources-heading"><div class="section-head"><h2 id="sources-heading">全部资料</h2><span>{sources.length} 份独立 PDF</span></div>
+<div class="knowledge-grid">{sources.map(s=><article class="knowledge-card library-source" id={`source-${s.id}`}><span class="badge">{s.category}</span><h3>{s.title}</h3><p>{s.note}</p><p class="source filename">{s.filename}<br/>{s.pages} 页 · {(s.bytes/1024/1024).toFixed(1)} MB · <span data-connection={s.id}>未连接</span></p><SourceLink class="button secondary pdf-link" source={s.id} page="1" aria-label={`打开${s.title}`}>打开资料 ↗</SourceLink></article>)}</div>
+<p class="source">新增目录内的真题与原根目录真题内容完全相同，已合并为一个索引。资料页数与年度范围已核验；逐题转录、答案勘误及考频统计尚未完成。站内搜索检索索引和已整理知识，不含扫描 PDF 的全部题目。</p>
+</section>
+<script>
+const kind=document.querySelector<HTMLSelectElement>('#year-kind')!;
+kind.addEventListener('change',()=>{let count=0;document.querySelectorAll<HTMLElement>('.year-card').forEach(card=>{card.hidden=kind.value!=='all'&&card.dataset.kind!==kind.value;if(!card.hidden)count++;});document.querySelector('#year-count')!.textContent=`${count} 条年度记录`;});
+</script>
+<style>
+.local-picker h2{margin-bottom:10px}.local-picker>p{font-size:.85rem}.local-picker input{display:block;max-width:100%;margin:12px 0;color:var(--muted);font-size:.8rem}.local-picker input::file-selector-button{border:0;border-radius:6px;padding:10px 16px;margin-right:12px;background:var(--green);color:white;cursor:pointer}.local-picker .filter-row{margin:16px 0 0;justify-content:space-between}.library-years{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.year-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px}.year-heading{display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:15px}.year-heading h3{font-size:1.6rem;font-variant-numeric:tabular-nums}.year-heading .badge{margin:0}.year-actions{display:flex;flex-wrap:wrap;gap:9px}.year-actions small{display:block;font-size:.65rem;color:var(--muted)}.pdf-link[aria-disabled=true]{opacity:.48;cursor:not-allowed}.library-source{display:flex;flex-direction:column}.library-source .pdf-link{align-self:flex-start;margin-top:auto}.filename{overflow-wrap:anywhere}button:disabled{opacity:.5;cursor:not-allowed}.library-years .source{margin-bottom:0}@media(max-width:900px){.library-years{grid-template-columns:1fr}}
+</style>
+</div>
+</Layout>

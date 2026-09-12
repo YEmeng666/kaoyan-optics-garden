@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {patterns,course,knowledge,href} from '../lib/data.mjs';
+import questionData from '../../content/questions.json';
+const pastCount=questionData.questions.filter(q=>q.sourceKind!=='approximation').length;
+---
+<Layout><section class="page-heading"><p class="eyebrow">840 物理光学 / 真题为主线</p><h1>先练真题，再查解题方法。</h1><p>历年题目按年份、题号、章节和考点分类。自拟算例用来辅助检查模型与单位。</p></section>
+<section class="learning-strip" style="margin:0 0 25px"><div><h2>历年真题 · 分类练习</h2><p>{questionData.coverage.length} 个年份 · {pastCount} 条汇编与回忆题记录 · 近似题单列辅助</p><div class="chips">{['4','5','6','7','8'].map(id=><a class="chip" href={href(`questions/?chapter=${id}`)}>第 {id} 章</a>)}</div></div><a class="button" href={href('questions/')}>进入真题练习 →</a></section>
+<div class="section-head"><h2>章节与专题学习</h2><a href={href('knowledge/')}>{knowledge.length} 个主题 →</a></div><div class="knowledge-grid">{course.chapters.map(ch=><a class="knowledge-card" href={href(`chapters/${ch.id}/`)}><span class="badge">第 {ch.id} 章</span><h2>{ch.title}</h2><p>{knowledge.filter(k=>k.chapter===ch.id).length} 个主题 · {patterns.filter(p=>p.chapter===ch.id).length} 类方法</p></a>)}</div>
+<section class="finder" aria-label="题型筛选"><div class="chips" aria-label="按章节筛选方法">{[['','全部章节'],...course.chapters.map(ch=>[ch.id,`第 ${ch.id} 章`])].map(([id,label])=><button class="chip" data-method-chapter={id} aria-pressed={id===''?'true':'false'}>{label}</button>)}</div><label for="cue-search">这道题给了什么条件？</label><div class="search-row"><span aria-hidden="true">⌕</span><input id="cue-search" type="search" placeholder="试试：移动反射镜、薄膜、条纹消失…" autocomplete="off"/><kbd>/</kbd></div><div class="chips" aria-label="常用题眼">{['全部','薄膜','偏振','光栅','半波带','吸收'].map((cue,i)=><button class:list={['chip',{active:i===0}]} data-cue={cue} aria-pressed={i===0?'true':'false'}>{cue}</button>)}</div></section>
+<div class="section-head"><h2>题眼 → 模型 → 方法</h2><span id="result-count" role="status" aria-live="polite">{patterns.length} 类题型</span></div>
+<div class="pattern-grid">{patterns.map((p,i)=><a class="pattern-card" href={href(`patterns/${p.id}/`)} data-chapter={p.chapter} data-search={[p.title,p.model,p.first,...p.cues].join(' ').toLowerCase()}><div class="card-top"><span class="index">{String(i+1).padStart(2,'0')}</span><span class="model-label">{p.model}</span><span class="arrow" aria-hidden="true">↗</span></div><h3>{p.title}</h3><p class="cues">{p.cues.slice(0,3).join(' / ')}</p><div class="first-step"><span>第一步</span><p>{p.first}</p></div><div class="card-bottom">{p.formulas.length} 条公式 · 分步解法 · 自拟算例 <span>查看方法 →</span></div></a>)}</div>
+<div id="empty" class="empty" hidden><h3>暂时没有匹配的题型</h3><p>试试缩短题眼，或搜索知识正文与公式。</p><a class="button" href={href('search/')}>搜索全部内容</a></div>
+<section class="learning-strip"><div><p class="eyebrow">把知识连起来</p><h2>五章知识与专题，按学习路径串联。</h2><p>电磁波与界面 → 干涉与衍射 → 晶体偏振 → 介质响应</p></div><a class="button secondary" href={href('knowledge/')}>打开知识地图 →</a></section>
+<script>
+ const field=document.querySelector<HTMLInputElement>('#cue-search')!;
+ const cards=[...document.querySelectorAll<HTMLElement>('.pattern-card')];
+ const chips=[...document.querySelectorAll<HTMLButtonElement>('[data-cue]')];
+ const chapterButtons=[...document.querySelectorAll<HTMLButtonElement>('[data-method-chapter]')];let chapter='';
+ chapterButtons.forEach(b=>b.addEventListener('click',()=>{chapter=b.dataset.methodChapter||'';chapterButtons.forEach(c=>{const active=c===b;c.setAttribute('aria-pressed',String(active));c.classList.toggle('active',active);});filter();}));
+ function filter(){const q=field.value.trim().toLowerCase();let count=0;for(const card of cards){card.hidden=!!((chapter&&card.dataset.chapter!==chapter)||!card.dataset.search!.includes(q));if(!card.hidden)count++;}document.querySelector('#result-count')!.textContent=`${count} 类题型`;document.querySelector<HTMLElement>('#empty')!.hidden=count>0;chips.forEach(b=>{const selected=(b.dataset.cue==='全部'&&!q)||b.dataset.cue?.toLowerCase()===q;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected));});}
+ field.addEventListener('input',filter);chips.forEach(b=>b.addEventListener('click',()=>{field.value=b.dataset.cue==='全部'?'':b.dataset.cue!;filter();}));
+</script></Layout>

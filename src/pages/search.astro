@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {href} from '../lib/data.mjs';
+---
+<Layout title="全文搜索" active="search"><section class="page-heading"><p class="eyebrow">搜索 / 已录入内容</p><h1>找知识，也找公式的条件。</h1><p>可以输入“半波损失”“相干长度”“F-P”或“迈克耳孙”。搜索结果来自当前样章。</p></section><div id="search"></div><noscript><p>全文搜索需要启用 JavaScript。你也可以直接浏览<a class="inline-link" href={href()}>题型索引</a>。</p></noscript><p id="search-error" hidden class="notice">搜索索引暂时未加载。请刷新重试，或先浏览题型索引。开发模式下需先运行生产构建并打开预览。</p><link rel="stylesheet" href={href('pagefind/pagefind-ui.css')}/><script is:inline define:vars={{base:href()}}>
+ const script=document.createElement('script');script.src=base+'pagefind/pagefind-ui.js';script.onload=()=>{new PagefindUI({element:'#search',showSubResults:true,showImages:false,resetStyles:false,bundlePath:base+'pagefind/',translations:{placeholder:'输入知识、题眼或公式名称',zero_results:'没有找到 [SEARCH_TERM]，试试更短的关键词。',searching:'正在搜索…',clear_search:'清空搜索',load_more:'加载更多',search_label:'全文搜索'}});};script.onerror=()=>{document.getElementById('search-error').hidden=false;};document.head.appendChild(script);
+</script></Layout>

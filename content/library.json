@@ -1,0 +1,332 @@
+{
+  "updated": "2026-09-09",
+  "sources": [
+    {
+      "id": "extended",
+      "bytes": 12016137,
+      "sha256": "27126587f3c09c00ee615d28682d7807ecb09f387d490a8e436488f336f605c3",
+      "pages": 107,
+      "title": "冲刺拓展题目练习",
+      "category": "拓展练习",
+      "note": "混合教材练习课件。PDF 1–37 为《物理光学学习指导与题解（第2版）》部分，38 起为《工程光学复习指导与习题解答（第2版）》部分；不作为历年真题。",
+      "permission": "private-local",
+      "filename": "840物理光学冲刺班-拓展题目练习.pdf"
+    },
+    {
+      "id": "exam",
+      "bytes": 82630896,
+      "sha256": "5bc2f4bfaba1b8294133ed4409c268267491f96d7ec980b87b63e6a34a9693ee",
+      "pages": 103,
+      "title": "历年试题汇编",
+      "category": "历年真题",
+      "note": "第三方汇编；2008–2016 为试卷扫描，2018–2023 为回忆版，2017 为考点示例。部分文字受广告遮挡。",
+      "permission": "private-local",
+      "filename": "电子科技大学840物理光学考研真题.pdf"
+    },
+    {
+      "id": "answers",
+      "bytes": 84483485,
+      "sha256": "ddfb82bd47fcc321e42a7715509eb14091a50e60090c46bc08762d34c4669cb6",
+      "pages": 88,
+      "title": "历年试题参考答案",
+      "category": "参考答案",
+      "note": "第三方参考答案，非官方答案；未逐题校核，部分文字被遮挡。",
+      "permission": "private-local",
+      "filename": "电子科技大学840物理光学考研真题答案.pdf"
+    },
+    {
+      "id": "zhao-exercises",
+      "bytes": 597572,
+      "sha256": "90f9c80dea9389e4ad6fe9ddae0466dea8c252b9012919a47cb5f932e07d3c19",
+      "pages": 9,
+      "title": "新概念物理教程光学 · 课后习题",
+      "category": "教材习题",
+      "note": "第三方选题课件，题目主体为图片；并非全书习题或完整解析。",
+      "permission": "private-local",
+      "filename": "新概念物理教程光学 课后习题.pdf"
+    },
+    {
+      "id": "physics-exercises",
+      "bytes": 617951,
+      "sha256": "34bc31b7f5c5013c1f3929a66bb367f3e910f9a16e21263d83bcfb0faf1fff5d",
+      "pages": 17,
+      "title": "物理光学 · 课后习题",
+      "category": "教材习题",
+      "note": "第三方选题课件；题目主体为图片，具体教材版本及逐题解析待核。",
+      "permission": "private-local",
+      "filename": "物理光学 课后习题.pdf"
+    },
+    {
+      "id": "applied-exercises",
+      "bytes": 812240,
+      "sha256": "070223468cc5b7e278f93f0dac2d1cb922a7d1ea5374541c77dfeb9c8a4cc13f",
+      "pages": 20,
+      "title": "物理光学与应用光学 · 课后习题",
+      "category": "教材习题",
+      "note": "第三方选题课件；不能把其章节编号直接对应为叶书章节。",
+      "permission": "private-local",
+      "filename": "物理光学与应用光学 课后习题.pdf"
+    },
+    {
+      "id": "ye",
+      "bytes": 32838008,
+      "sha256": "13b20a886f52bad4db9bfa7de8a1e1626449125692ebbd2917081d699e7f13da",
+      "pages": 478,
+      "title": "光学教程 · 叶玉堂（第2版）",
+      "category": "教材",
+      "note": "本地扫描教材。正文尚未完成全文识别；网站知识条目另列已核对的教材引用。",
+      "permission": "private-local",
+      "filename": "光学教程（第2版）_叶玉堂2011.pdf"
+    },
+    {
+      "id": "zhao",
+      "bytes": 53415180,
+      "sha256": "47a0b9b54b24eac5ff68936d3add0fb87cfc9e330f54a4ff3af8d4c7707706e0",
+      "pages": 421,
+      "title": "新概念物理教程 · 光学",
+      "category": "教材",
+      "note": "本地扫描教材。正文尚未完成全文识别；网站知识条目另列已核对的教材引用。",
+      "permission": "private-local",
+      "filename": "《新概念物理教程__光学》赵凯华.pdf"
+    }
+  ],
+  "years": [
+    {
+      "year": 2008,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        15,
+        19
+      ],
+      "answer": [
+        15,
+        18
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2009,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        20,
+        24
+      ],
+      "answer": [
+        19,
+        21
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2010,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        25,
+        30
+      ],
+      "answer": [
+        22,
+        24
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2011,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        31,
+        35
+      ],
+      "answer": [
+        25,
+        27
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2012,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        36,
+        40
+      ],
+      "answer": [
+        28,
+        32
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2013,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        41,
+        45
+      ],
+      "answer": [
+        33,
+        37
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2014,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        46,
+        50
+      ],
+      "answer": [
+        38,
+        42
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2015,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        51,
+        56
+      ],
+      "answer": [
+        43,
+        46
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2016,
+      "kind": "scan",
+      "label": "试卷扫描 · 第三方汇编",
+      "question": [
+        57,
+        64
+      ],
+      "answer": [
+        47,
+        50
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2017,
+      "kind": "example",
+      "label": "考点示例 · 非当年原题",
+      "question": [
+        65,
+        76
+      ],
+      "answer": [
+        51,
+        57
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2018,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        77,
+        79
+      ],
+      "answer": [
+        58,
+        60
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2019,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        80,
+        82
+      ],
+      "answer": [
+        61,
+        64
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2020,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        83,
+        85
+      ],
+      "answer": [
+        65,
+        67
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2021,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        86,
+        88
+      ],
+      "answer": [
+        68,
+        72
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2022,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        89,
+        94
+      ],
+      "answer": [
+        73,
+        79
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    },
+    {
+      "year": 2023,
+      "kind": "recall",
+      "label": "回忆版",
+      "question": [
+        95,
+        101
+      ],
+      "answer": [
+        80,
+        86
+      ],
+      "answerStatus": "第三方参考，未逐题校核"
+    }
+  ],
+  "missing": [
+    {
+      "year": 2024,
+      "reason": "两册均仅有编写中通知，没有试题或答案。",
+      "questionPlaceholder": 102,
+      "answerPlaceholder": 88
+    },
+    {
+      "year": 2025,
+      "reason": "封面 2025 是资料营销年份，正文未发现该年试卷。"
+    }
+  ],
+  "verification": "文件 SHA-256 与页数已核验；年度范围按目录、年度标题和逐页缩略图核对。答案 PDF 87 是后记，2024 占位实际在 PDF 88，不能机械用目录页码加 14。尚未完成逐题转录、答案勘误及考频统计。"
+}

@@ -1,0 +1,17 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import {course,href} from '../lib/data.mjs';
+const {title='题眼与方法',active='home',description='物理光学复习：从题眼识别模型，查找第一步、解题步骤、公式条件和自拟算例。'}=Astro.props;
+const nav=[['questions','questions/','历年真题 · 分类练习'],['home','','题眼与方法'],['knowledge','knowledge/','知识与专题地图'],['cues','cues/','题眼速查'],['formulas','formulas/','公式速查'],['examples','examples/','辅助算例'],['library','library/','资料库 · 整卷'],['search','search/','全文搜索']];
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content={description}/><title>{title} · 考研专业课大观园</title><link rel="icon" type="image/svg+xml" href={href('favicon.svg')}/></head>
+<body><a class="skip" href="#main">跳到正文</a><div class="app-shell">
+<aside class="sidebar" data-pagefind-ignore><a class="brand" href={href()}><span class="brand-mark">光</span><span>专业课大观园<small>物理光学 · 学习工作台</small></span></a>
+<nav aria-label="功能导航">{nav.map(([key,path,label])=><a href={href(path)} class:list={['nav-link',{selected:active===key}]} aria-current={active===key?'page':undefined}><span>{label}</span><span aria-hidden="true">↗</span></a>)}</nav>
+<div class="nav-caption">章节目录 <span>04 — 08</span></div><nav aria-label="章节导航">{course.chapters.map(ch=><a class:list={['chapter-link',{selected:active===`chapter-${ch.id}`}]} href={href(`chapters/${ch.id}/`)}><span class="chapter-number">0{ch.id}</span><span>{ch.title}</span></a>)}</nav>
+<div class="sidebar-bottom"><span class="status-dot"></span>第 4–8 章 · 专题复习<a href={href('about/')}>资料依据与内容说明 ↗</a></div></aside>
+<div class="workspace"><header class="topbar" data-pagefind-ignore><span>840 物理光学 <span class="muted">/ 复习工作台</span></span><a href={href('search/')} aria-label="打开全文搜索">搜索知识 <kbd>/</kbd></a></header>
+<main id="main" tabindex="-1"><slot/></main><footer data-pagefind-ignore>依据 2026 版大纲组织 · 知识 · 方法 · 真题关联 · <a href={href('about/')}>查看范围、来源与更新说明</a></footer></div></div>
+<script>document.addEventListener('keydown',(event)=>{const target=event.target;if(event.key==='/'&&!event.ctrlKey&&!event.metaKey&&!(target instanceof HTMLElement&&(['INPUT','TEXTAREA'].includes(target.tagName)||target.isContentEditable))){event.preventDefault();window.location.href=import.meta.env.BASE_URL+'search/';}});</script>
+</body></html>

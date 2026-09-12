@@ -1,0 +1,6 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Formula from '../components/Formula.astro';
+import {formulas,patterns} from '../lib/data.mjs';
+---
+<Layout title="公式速查" active="formulas"><article data-pagefind-body><section class="page-heading"><p class="eyebrow" data-pagefind-meta="type">公式库 / 第 4–8 章</p><h1 data-pagefind-meta="title">公式要和条件一起记。</h1><p>{formulas.length} 张公式卡，包含符号、适用范围与容易误用的地方。</p></section><div class="filter-row" data-pagefind-ignore><label for="formula-filter">按题型筛选</label><select id="formula-filter"><option value="">全部公式</option>{patterns.map(p=><option value={p.id}>{p.title}</option>)}</select><span id="formula-count" role="status">{formulas.length} 条公式</span></div>{formulas.map(f=><Formula formula={f}/>)}</article><script>const filter=document.querySelector<HTMLSelectElement>('#formula-filter')!;filter.addEventListener('change',()=>{let count=0;document.querySelectorAll<HTMLElement>('[data-patterns]').forEach(el=>{el.hidden=!!filter.value&&!el.dataset.patterns!.split(' ').includes(filter.value);if(!el.hidden)count++;});document.querySelector('#formula-count')!.textContent=`${count} 条公式`;});</script></Layout>
