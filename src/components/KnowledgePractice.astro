@@ -1,0 +1,39 @@
+---
+const {record,pattern}=Astro.props;
+const worked=record.worked??{
+ question:pattern.example.question,
+ cue:pattern.first,
+ steps:pattern.example.steps.map((action,i)=>({action,why:record.reasons[i]})),
+ answer:pattern.example.answer,
+ check:pattern.example.check
+};
+const practice=record.practice;
+---
+<section aria-labelledby="worked-example-heading">
+ <h2 id="worked-example-heading">例题：把思路展开到每一步</h2>
+ <div class="example-box">
+  <span class="badge ai">AI 原创例题 · 非教材原文</span>
+  <p><strong>{worked.question}</strong></p>
+  <p class="notice"><strong>先看题眼：</strong>{worked.cue}</p>
+  <details open>
+   <summary>分步思路与答案</summary>
+   <ol class="steps">{worked.steps.map((step,index)=><li><p><strong>第 {index+1} 步：</strong>{step.action}</p><p><strong>为什么：</strong>{step.why}</p>{step.result&&<p><strong>得到：</strong>{step.result}</p>}</li>)}</ol>
+   <p class="answer">答案：{worked.answer}</p>
+   <p><strong>结果检查：</strong>{worked.check}</p>
+  </details>
+ </div>
+</section>
+<section aria-labelledby="practice-heading">
+ <h2 id="practice-heading">课后自测：先做，再看解析</h2>
+ <div class="example-box">
+  <span class="badge">原创课后题</span>
+  <p><strong>{practice.question}</strong></p>
+  <details>
+   <summary>查看题眼、逐步解析与答案</summary>
+   <p class="notice"><strong>题眼：</strong>{practice.cue}</p>
+   <ol class="steps">{practice.steps.map((step,index)=><li><p><strong>第 {index+1} 步：</strong>{step.action}</p><p><strong>为什么：</strong>{step.why}</p>{step.result&&<p><strong>得到：</strong>{step.result}</p>}</li>)}</ol>
+   <p class="answer">答案：{practice.answer}</p>
+   <p><strong>自检：</strong>{practice.check}</p>
+  </details>
+ </div>
+</section>

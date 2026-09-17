@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Formula from '../../components/Formula.astro';
+import KnowledgePractice from '../../components/KnowledgePractice.astro';
 import questionData from '../../../content/questions.json';
+import practiceData from '../../../content/knowledge-practice.mjs';
 import {knowledge,patterns,formulas,course,href} from '../../lib/data.mjs';
 const modules=import.meta.glob('../../../content/knowledge/*.md',{eager:true});
 export function getStaticPaths(){return knowledge.map(item=>({params:{id:item.id},props:{item}}));}
@@ -12,10 +14,13 @@ const related=patterns.filter(p=>p.knowledge===k.id || (k.id==='sources'&&['youn
 const chapter=course.chapters.find(c=>c.id===k.chapter);
 const linkedFormulaIds=[...new Set(related.flatMap(p=>p.formulas))];
 const pastQuestions=questionData.questions.filter(q=>q.sourceKind!=='approximation'&&q.chapter===k.chapter&&(k.topics?.includes(q.topic)||q.patterns.some(id=>related.some(p=>p.id===id)))).sort((a,b)=>b.year-a.year);
+const practice=practiceData[k.id];
+const practicePattern=practice.pattern?patterns.find(p=>p.id===practice.pattern):null;
 ---
 <Layout title={k.title} active="knowledge"><div class="breadcrumb" data-pagefind-ignore><a href={href(`chapters/${k.chapter}/`)}>{chapter.title}</a> / {k.title}</div><article class="prose" data-pagefind-body><span class="badge" data-pagefind-meta="type">知识点</span><span class="badge">{k.label}</span><Content/><p class="source">依据与复核定位：{k.source}。推导与补充解释另行标记。</p>
 {k.id==='two-beam'&&<figure class="diagram"><svg viewBox="0 0 600 210" role="img" aria-label="同一光源分成两条路径后在观察点叠加的示意图"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#56744c"/></marker></defs><g fill="none" stroke="#56744c" stroke-width="2" marker-end="url(#arrow)"><path d="M75 105 L210 45 L495 105"/><path d="M75 105 L210 165 L495 105"/></g><g fill="#194d3b"><circle cx="75" cy="105" r="6"/><circle cx="500" cy="105" r="6"/></g><g font-size="15" fill="#24372e"><text x="45" y="137">同一光源</text><text x="237" y="39">路径 1：光程 + 附加相位</text><text x="237" y="185">路径 2：光程 + 附加相位</text><text x="470" y="137">观察点</text></g></svg><figcaption>【AI补充解释】概念示意，不按实际装置比例绘制。只有在同一比较基准上才能相减两路相位。</figcaption></figure>}
 {linkedFormulaIds.length>0&&<><h2>公式与适用条件</h2>{linkedFormulaIds.map(id=><Formula formula={formulas.find(f=>f.id===id)}/>)}</>}
+<KnowledgePractice record={practice} pattern={practicePattern}/>
 <h2>对应解题方法</h2><div class="related-list">{related.map(p=><a class="related-link" href={href(`patterns/${p.id}/`)}>{p.title} <span>看第一步 →</span></a>)}</div>{related.length===0&&<p>本主题的建模步骤见正文，可继续查看本章方法与真题。</p>}
 <h2>相关历年题目</h2><p>按考点关联，具体题目仍需判断是否满足本页模型条件。</p><div class="related-list">{pastQuestions.slice(0,5).map(q=><a class="related-link" href={href(`questions/?chapter=${q.chapter}#${q.id}`)}><span>{q.year} · {q.section}{q.number} · {q.sourceKind==='recall'?'回忆版':'汇编版'}<br/>{q.title}</span><span>读原题 →</span></a>)}</div><p><a href={href(`questions/?chapter=${k.chapter}`)}>查看本章全部真题 →</a></p>
 <h2>继续复习</h2><p><a href={href(`chapters/${k.chapter}/`)}>返回第 {k.chapter} 章</a> · <a href={href('knowledge/')}>完整知识地图</a> · <a href={href('formulas/')}>公式与条件</a></p></article></Layout>

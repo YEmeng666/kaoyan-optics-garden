@@ -1,7 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import {href} from '../lib/data.mjs';
+import {href,knowledge} from '../lib/data.mjs';
+import aliases from '../../content/search-aliases.json';
+const texts=import.meta.glob('../../content/knowledge/*.md',{eager:true,query:'?raw',import:'default'});
+const documents=knowledge.map(k=>({...k,aliases:aliases[k.id]||[],url:href(`knowledge/${k.id}/`),text:texts[`../../content/knowledge/${k.id}.md`]}));
 ---
-<Layout title="全文搜索" active="search"><section class="page-heading"><p class="eyebrow">搜索 / 已录入内容</p><h1>找知识，也找公式的条件。</h1><p>可以输入“半波损失”“相干长度”“F-P”或“迈克耳孙”。搜索结果来自当前样章。</p></section><div id="search"></div><noscript><p>全文搜索需要启用 JavaScript。你也可以直接浏览<a class="inline-link" href={href()}>题型索引</a>。</p></noscript><p id="search-error" hidden class="notice">搜索索引暂时未加载。请刷新重试，或先浏览题型索引。开发模式下需先运行生产构建并打开预览。</p><link rel="stylesheet" href={href('pagefind/pagefind-ui.css')}/><script is:inline define:vars={{base:href()}}>
- const script=document.createElement('script');script.src=base+'pagefind/pagefind-ui.js';script.onload=()=>{new PagefindUI({element:'#search',showSubResults:true,showImages:false,resetStyles:false,bundlePath:base+'pagefind/',translations:{placeholder:'输入知识、题眼或公式名称',zero_results:'没有找到 [SEARCH_TERM]，试试更短的关键词。',searching:'正在搜索…',clear_search:'清空搜索',load_more:'加载更多',search_label:'全文搜索'}});};script.onerror=()=>{document.getElementById('search-error').hidden=false;};document.head.appendChild(script);
-</script></Layout>
+<Layout title="知识点与全文搜索" active="search">
+<section class="page-heading"><p class="eyebrow">搜索 / 第 4–8 章</p><h1>记得一部分，也能找知识。</h1><p>支持名称片段、常用别名、英文缩写和少量错字。多个关键词可用空格分开；下方同时检索站内全文。</p></section>
+<form id="search-form" class="finder" role="search" data-base={href()}>
+<label for="knowledge-query">知识点、题眼或公式名称</label>
+<div class="search-row"><input id="knowledge-query" type="search" maxlength="100" autocomplete="off" placeholder="例如：迈克尔逊、FP、相干长渡、干涉 条件" aria-describedby="search-help"/><button class="button" type="submit">搜索</button><button class="button secondary" type="reset">清空</button></div>
+<p id="search-help" class="source">近似匹配只提供可能相关的知识点。扫描 PDF 的题干正文尚未纳入全文搜索。</p>
+</form>
+<p id="knowledge-status" role="status" aria-live="polite">输入关键词开始搜索。</p>
+<section id="knowledge-results-section" hidden aria-labelledby="knowledge-heading"><div class="section-head"><h2 id="knowledge-heading">相关知识点</h2></div><div id="knowledge-results" class="knowledge-grid"></div></section>
+<section id="fulltext-section" hidden aria-labelledby="fulltext-heading"><div class="section-head"><h2 id="fulltext-heading">站内全文</h2></div><p id="fulltext-status" role="status" aria-live="polite"></p><div id="fulltext-results" class="knowledge-grid"></div><p><button id="load-more" class="button secondary" hidden>加载更多</button></p></section>
+<script id="knowledge-index" type="application/json" set:html={JSON.stringify(documents).replaceAll('<','\\u003c')}/>
+<noscript><p>搜索需要启用 JavaScript。也可直接浏览<a class="inline-link" href={href('knowledge/')}>知识地图</a>。</p></noscript>
+<script>
+import {searchKnowledge} from '../lib/fuzzy-search.mjs';
+const docs=JSON.parse(document.querySelector('#knowledge-index')!.textContent!);
+const form=document.querySelector<HTMLFormElement>('#search-form')!;
+const input=document.querySelector<HTMLInputElement>('#knowledge-query')!;
+const knowledgeStatus=document.querySelector('#knowledge-status')!;
+const knowledgeSection=document.querySelector<HTMLElement>('#knowledge-results-section')!;
+const knowledgeResults=document.querySelector('#knowledge-results')!;
+const fullSection=document.querySelector<HTMLElement>('#fulltext-section')!;
+const fullStatus=document.querySelector('#fulltext-status')!;
+const fullResults=document.querySelector('#fulltext-results')!;
+const more=document.querySelector<HTMLButtonElement>('#load-more')!;
+const base=form.dataset.base!;
+let enginePromise,revision=0,timer,composing=false,hits=[],shown=0;
+function engine(){return enginePromise??=(import(/* @vite-ignore */ base+'pagefind/pagefind.js').then(async module=>{await module.options({basePath:base+'pagefind/',baseUrl:base,language:'zh-cn'});return module;}).catch(error=>{enginePromise=null;throw error;}));}
+function card(title,url,summary,reason=''){
+ const node=document.createElement('article');node.className='knowledge-card';
+ const heading=document.createElement('h3'),link=document.createElement('a');link.textContent=title;link.href=url;heading.append(link);node.append(heading);
+ const p=document.createElement('p');p.textContent=summary;node.append(p);
+ if(reason){const note=document.createElement('p');note.className='source';note.textContent=reason;node.append(note);}return node;
+}
+async function appendFulltext(id){
+ more.disabled=true;
+ try{const batch=await Promise.all(hits.slice(shown,shown+10).map(hit=>hit.data()));if(id!==revision)return;
+ for(const hit of batch){const excerpt=new DOMParser().parseFromString(hit.excerpt||'','text/html').body.textContent||'';fullResults.append(card(hit.meta.title,hit.url,excerpt));}
+ shown+=batch.length;more.hidden=shown>=hits.length;
+ }catch{if(id===revision){fullStatus.textContent='部分全文结果暂时无法加载，请重新搜索。';more.hidden=true;}}
+ finally{if(id===revision)more.disabled=false;}
+}
+async function run(){
+ const id=++revision,query=input.value.trim();
+ const url=new URL(location.href);query?url.searchParams.set('q',query):url.searchParams.delete('q');history.replaceState(null,'',url);
+ knowledgeResults.replaceChildren();fullResults.replaceChildren();more.hidden=true;hits=[];shown=0;
+ knowledgeSection.hidden=fullSection.hidden=!query;
+ if(!query){knowledgeStatus.textContent='输入关键词开始搜索。';fullStatus.textContent='';return;}
+ const matches=searchKnowledge(query,docs);
+ knowledgeStatus.textContent=matches.length?`找到 ${matches.length} 个相关知识点，按匹配程度排列。`:'没有找到相关知识点，试试更短的关键词或常用名称。';
+ for(const hit of matches)knowledgeResults.append(card(hit.title,hit.url,hit.summary,`第 ${hit.chapter} 章 · ${hit.reason}`));
+ fullStatus.textContent='正在搜索全文…';
+ try{const pagefind=await engine();if(id!==revision)return;const result=await pagefind.search(query);if(id!==revision)return;hits=result.results;fullStatus.textContent=hits.length?`全文找到 ${hits.length} 条结果。`:'全文没有字面匹配；可以查看上方的近似知识点。';await appendFulltext(id);}
+ catch{if(id===revision)fullStatus.textContent='全文索引暂时无法加载，知识点匹配仍可使用。请稍后重新搜索。';}
+}
+function schedule(){clearTimeout(timer);++revision;more.hidden=true;fullResults.replaceChildren();fullStatus.textContent='';if(!composing)timer=setTimeout(run,180);}
+input.addEventListener('input',schedule);
+input.addEventListener('compositionstart',()=>{composing=true;clearTimeout(timer);++revision;});
+input.addEventListener('compositionend',()=>{composing=false;schedule();});
+form.addEventListener('submit',event=>{event.preventDefault();clearTimeout(timer);if(!composing)run();});
+form.addEventListener('reset',()=>{clearTimeout(timer);input.value='';composing=false;run();input.focus();});
+more.addEventListener('click',()=>appendFulltext(revision));
+input.value=(new URL(location.href).searchParams.get('q')||'').slice(0,100);if(input.value)run();
+</script>
+</Layout>
