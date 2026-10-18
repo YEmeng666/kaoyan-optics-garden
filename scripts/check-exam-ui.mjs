@@ -1,0 +1,33 @@
+import {createRequire} from 'node:module';
+import {mkdirSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const require=createRequire(import.meta.url),{chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const browser=await chromium.launch({headless:true,...(process.env.STUDY_BROWSER_PATH?{executablePath:process.env.STUDY_BROWSER_PATH}:{})});
+const base=process.env.STUDY_TEST_URL||'http://127.0.0.1:4321/';
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{
+ await page.goto(base+'exam-types/');await page.locator('#exam-result-count').filter({hasText:'399'}).waitFor();
+ assert.equal(await page.locator('[data-exam-topic]:visible').count(),29);
+ await page.selectOption('[name=chapter]','7');await page.selectOption('[name=year]','2023');await page.selectOption('[name=type]','calculation');
+ assert.equal(await page.locator('[data-exam-topic]:visible').count(),1);
+ assert.equal(await page.locator('[data-exam-topic]:visible').getAttribute('data-exam-topic'),'polarized-interference');
+ assert.ok((await page.locator('#exam-result-count').textContent()).includes('1 条对应记录'));
+ await page.reload();assert.equal(await page.locator('[name=chapter]').inputValue(),'7');assert.equal(await page.locator('[name=year]').inputValue(),'2023');
+ await page.locator('button[type=reset]').click();await page.locator('#exam-result-count').filter({hasText:'399'}).waitFor();
+ await page.locator('[data-exam-jump="4"]').click();assert.equal(await page.locator('[name=chapter]').inputValue(),'4');assert.equal(await page.locator('[data-exam-chapter]:visible').count(),1);await page.locator('button[type=reset]').click();await page.locator('#exam-result-count').filter({hasText:'399'}).waitFor();
+ await page.fill('#exam-query','牛顿环');await page.locator('[data-exam-topic]:visible').first().waitFor();await page.locator('button[type=submit]').click();
+ assert.ok((await page.locator('[data-exam-topic]:visible').allTextContents()).join(' ').includes('牛顿环'));
+ await page.fill('#exam-query','不存在的冷门词');await page.locator('button[type=submit]').click();await page.locator('#exam-empty:visible').waitFor();
+ await page.goto(base+'exam-types/two-beam/#newton-overlap');
+ await page.locator('#newton-overlap').waitFor();assert.ok((await page.locator('#newton-overlap').textContent()).includes('2018'));
+ const sourceLink=page.locator('#newton-overlap .exam-evidence-links a').first();assert.ok((await sourceLink.getAttribute('href')).includes('.pdf#page='));
+ assert.ok((await page.locator('#newton-overlap').textContent()).includes('为什么先这样想'));
+ await page.goto(base+'exam-types/electro-optic/');assert.ok((await page.locator('[data-question-id="2023-choice-12"]').textContent()).includes('仅回忆提纲'));
+ await page.goto(base+'exam-types/lorentz-index/');assert.ok((await page.locator('main').textContent()).includes('尚未收录可直接对应的考例'));assert.equal(await page.locator('[data-question-id]').count(),0);
+ await page.goto(base+'knowledge/lorentz-index/');assert.equal(await page.locator('main a[href*="questions/?chapter=8#"]').count(),0);
+ await page.goto(base+'exam-types/critical-brewster/');const details=page.locator('.exam-more').first();await details.locator('summary').click();assert.equal(await details.getAttribute('open'),'');
+ mkdirSync('tmp/exam-qa',{recursive:true});await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:'tmp/exam-qa/detail.png',fullPage:false});
+ await page.goto(base+'exam-types/?chapter=5');await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true);await page.screenshot({path:'tmp/exam-qa/mobile.png',fullPage:false});
+ await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:'tmp/exam-qa/overview.png',fullPage:false});
+ assert.deepEqual(errors,[]);console.log('Exam UI verified: chapter/year/type/query filters, reset and URL restore, evidence and PDF links, source warnings, no-evidence topics, expansion and mobile width; no browser errors.');
+}finally{await browser.close();}

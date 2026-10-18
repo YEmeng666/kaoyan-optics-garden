@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Formula from '../../components/Formula.astro';
 import KnowledgePractice from '../../components/KnowledgePractice.astro';
 import TopicProgress from '../../components/TopicProgress.astro';
-import questionData from '../../../content/questions.json';
+import {examTopics} from '../../lib/exam-catalog.mjs';
 import practiceData from '../../../content/knowledge-practice.mjs';
 import {knowledge,patterns,formulas,course,href} from '../../lib/data.mjs';
 const modules=import.meta.glob('../../../content/knowledge/*.md',{eager:true});
@@ -14,7 +14,7 @@ const {Content}=doc;
 const related=patterns.filter(p=>p.knowledge===k.id || (k.id==='sources'&&['young','film'].includes(p.id)) || (k.id==='instruments'&&p.id==='fabry'));
 const chapter=course.chapters.find(c=>c.id===k.chapter);
 const linkedFormulaIds=[...new Set(related.flatMap(p=>p.formulas))];
-const pastQuestions=questionData.questions.filter(q=>q.sourceKind!=='approximation'&&q.chapter===k.chapter&&(k.topics?.includes(q.topic)||q.patterns.some(id=>related.some(p=>p.id===id)))).sort((a,b)=>b.year-a.year);
+const pastQuestions=examTopics.find(t=>t.id===k.id).groups.flatMap(g=>g.records).sort((a,b)=>b.year-a.year);
 const practice=practiceData[k.id];
 const practicePattern=practice.pattern?patterns.find(p=>p.id===practice.pattern):null;
 ---
@@ -23,5 +23,5 @@ const practicePattern=practice.pattern?patterns.find(p=>p.id===practice.pattern)
 {linkedFormulaIds.length>0&&<><h2>公式与适用条件</h2>{linkedFormulaIds.map(id=><Formula formula={formulas.find(f=>f.id===id)}/>)}</>}
 <KnowledgePractice record={practice} pattern={practicePattern}/>
 <h2>对应解题方法</h2><div class="related-list">{related.map(p=><a class="related-link" href={href(`patterns/${p.id}/`)}>{p.title} <span>看第一步 →</span></a>)}</div>{related.length===0&&<p>本主题的建模步骤见正文，可继续查看本章方法与真题。</p>}
-<h2>相关历年题目</h2><p>按考点关联，具体题目仍需判断是否满足本页模型条件。</p><div class="related-list">{pastQuestions.slice(0,5).map(q=><a class="related-link" href={href(`questions/?chapter=${q.chapter}#${q.id}`)}><span>{q.year} · {q.section}{q.number} · {q.sourceKind==='recall'?'回忆版':'汇编版'}<br/>{q.title}</span><span>读原题 →</span></a>)}</div><p><a href={href(`questions/?chapter=${k.chapter}`)}>查看本章全部真题 →</a></p>
+<h2>相关历年题目</h2><p><a class="button secondary" href={href(`exam-types/${k.id}/`)}>本知识点怎么考？看考法、年份与原题 →</a></p><p>按考点关联，具体题目仍需判断是否满足本页模型条件。</p>{pastQuestions.length===0&&<p>当前索引尚未收录直接对应本专题的考例，不据此判断该知识点是否考查。</p>}<div class="related-list">{pastQuestions.slice(0,5).map(q=><a class="related-link" href={href(`questions/?chapter=${q.chapter}#${q.id}`)}><span>{q.year} · {q.section}{q.number} · {q.sourceKind==='recall'?'回忆版':'汇编版'}<br/>{q.title}</span><span>读原题 →</span></a>)}</div><p><a href={href(`questions/?chapter=${k.chapter}`)}>查看本章全部真题 →</a></p>
 <h2>继续复习</h2><p><a href={href(`chapters/${k.chapter}/`)}>返回第 {k.chapter} 章</a> · <a href={href('knowledge/')}>完整知识地图</a> · <a href={href('formulas/')}>公式与条件</a></p></article></Layout>

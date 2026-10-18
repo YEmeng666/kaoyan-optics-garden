@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 import {course,href} from '../lib/data.mjs';
 import {studyTopics,studyCards} from '../lib/study-data.mjs';
 const {title='题眼与方法',active='home',studyCatalog=false,description='物理光学复习：从题眼识别模型，查找第一步、解题步骤、公式条件和自拟算例。'}=Astro.props;
-const nav=[['study','study/','背诵与练题 · 学习进度'],['questions','questions/','历年真题 · 分类练习'],['home','','题眼与方法'],['knowledge','knowledge/','知识与专题地图'],['cues','cues/','题眼速查'],['formulas','formulas/','公式速查'],['examples','examples/','辅助算例'],['library','library/','资料库 · 整卷'],['search','search/','全文搜索']];
+const nav=[['exam-types','exam-types/','真题怎么考 · 知识点考法'],['study','study/','背诵与练题 · 学习进度'],['questions','questions/','历年真题 · 分类练习'],['home','','题眼与方法'],['knowledge','knowledge/','知识与专题地图'],['cues','cues/','题眼速查'],['formulas','formulas/','公式速查'],['examples','examples/','辅助算例'],['library','library/','资料库 · 整卷'],['search','search/','全文搜索']];
 ---
 <!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content={description}/><title>{title} · 考研专业课大观园</title><link rel="icon" type="image/svg+xml" href={href('favicon.svg')}/></head>
 <body>{studyCatalog&&<script id="study-progress-catalog" type="application/json" set:html={JSON.stringify({topics:studyTopics,cards:studyCards.map(({id,kind,topicIds})=>({id,kind,topicIds}))}).replaceAll('<','\\u003c')} />}<a class="skip" href="#main">跳到正文</a><div class="app-shell">

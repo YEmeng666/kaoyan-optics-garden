@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {examTopics,examGroups} from '../../lib/exam-catalog.mjs';
+import {course,href} from '../../lib/data.mjs';
+import {typeLabels} from '../../lib/questions.mjs';
+import '../../styles/exam-types.css';
+const records=examGroups.flatMap(g=>g.records);
+const years=[...new Set(records.map(q=>q.year))].sort((a,b)=>b-a);
+const clientTopics=examTopics.map(t=>({id:t.id,title:t.title,chapter:t.chapter,groups:t.groups.map(g=>({id:g.id,title:g.title,asks:g.asks,records:g.records.map(q=>({id:q.id,title:q.title,year:q.year,type:q.type}))}))}));
+---
+<Layout title="真题怎么考 · 按知识点看考法" active="exam-types">
+ <section class="page-heading"><p class="eyebrow">历年题目 → 知识点 → 具体考法</p><h1>这个知识点，题目会怎样问？</h1><p>把现有 {records.length} 条汇编与回忆题记录，按章节知识点整理成 {examGroups.length} 类考法。看设问、找模型，再回到原题练。</p></section>
+ <p class="notice">依据现有题目索引整理，保留年份、题号、回忆不全和存疑提示。考法名称与建模建议由本站概括；原题条件以 PDF 为准。条目数量不等于独立核实考频，不用于预测下一次考试。</p>
+ <form id="exam-filter" class="finder" role="search"><label for="exam-query">查知识点、考法或具体设问</label><div class="search-row"><input id="exam-query" name="query" type="search" maxlength="100" placeholder="例如：牛顿环、布儒斯特、缺级、半波电压"/><button class="button" type="submit">查找</button></div><div class="exam-filter-grid"><label>章节<select name="chapter"><option value="">全部章节</option>{course.chapters.map(ch=><option value={ch.id}>第 {ch.id} 章 · {ch.title}</option>)}</select></label><label>年份<select name="year"><option value="">全部年份</option>{years.map(year=><option value={year}>{year} 年</option>)}</select></label><label>实际题型<select name="type"><option value="">全部题型</option>{Object.entries(typeLabels).map(([key,title])=><option value={key}>{title}</option>)}</select></label></div><button class="button secondary" type="reset">清除筛选</button></form>
+ <p id="exam-result-count" role="status" aria-live="polite">{examTopics.length} 个知识点 · {examGroups.length} 类考法 · {records.length} 条题目记录</p>
+ <nav class="chips" aria-label="跳到章节">{course.chapters.map(ch=><a class="chip" href={`#exam-chapter-${ch.id}`} data-exam-jump={ch.id}>第 {ch.id} 章 · {ch.title}</a>)}</nav>
+ <div id="exam-empty" class="empty" hidden><h2>没有匹配的考法</h2><p>减少筛选条件，或清空关键词后按章节浏览。</p></div>
+ {course.chapters.map(ch=><section id={`exam-chapter-${ch.id}`} data-exam-chapter={ch.id} class="exam-chapter"><div class="section-head"><h2>第 {ch.id} 章 · {ch.title}</h2><a href={href(`questions/?chapter=${ch.id}`)}>练本章真题 →</a></div><div class="knowledge-grid">{examTopics.filter(t=>t.chapter===ch.id).map(t=><article class="knowledge-card exam-topic-card" data-exam-topic={t.id}><h3><a href={href(`exam-types/${t.id}/`)}>{t.title} ↗</a></h3><p class="source" data-exam-count>{t.groups.length} 类考法 · {t.groups.reduce((n,g)=>n+g.records.length,0)} 条记录</p>{t.groups.length?<ul class="exam-group-links">{t.groups.map(g=><li data-exam-group={g.id}><a href={href(`exam-types/${t.id}/#${g.id}`)}>{g.title}</a><small>{g.years.join('、')}</small></li>)}</ul>:<p>尚未收录直接考例。保留知识入口，不据此推断是否考查。</p>}<a class="inline-link" href={href(`exam-types/${t.id}/`)}>看具体设问、思路与年份证据 →</a></article>)}</div></section>)}
+ <noscript><p class="notice">筛选需要 JavaScript；仍可按上方章节和知识点链接浏览全部考法。</p></noscript>
+ <script id="exam-topic-index" type="application/json" set:html={JSON.stringify(clientTopics).replaceAll('<','\\u003c')}/>
+ <script>
+ import {filterExamTopics} from '../../lib/exam-types.mjs';
+ const form=document.querySelector<HTMLFormElement>('#exam-filter')!,input=form.querySelector<HTMLInputElement>('[name=query]')!;
+ const topics=JSON.parse(document.querySelector('#exam-topic-index')!.textContent!);
+ const cards=[...document.querySelectorAll<HTMLElement>('[data-exam-topic]')];
+ const params=new URL(location.href).searchParams;
+ for(const key of ['query','chapter','year','type']){const control=form.elements.namedItem(key) as HTMLInputElement|HTMLSelectElement,value=params.get(key);if(value!==null){if(control instanceof HTMLSelectElement){if([...control.options].some(o=>o.value===value))control.value=value;}else control.value=value.slice(0,100);}}
+ function run(sync=true){const state=Object.fromEntries(new FormData(form)),matches=filterExamTopics(topics,state),map=new Map(matches.map(t=>[t.id,t]));let groupCount=0;const questionIds=new Set();
+  for(const card of cards){const topic=map.get(card.dataset.examTopic);card.hidden=!topic;if(!topic)continue;const groups=new Set(topic.groups.map(g=>g.id));card.querySelectorAll<HTMLElement>('[data-exam-group]').forEach(el=>el.hidden=!groups.has(el.dataset.examGroup));const ids=new Set();for(const g of topic.groups)for(const q of g.records)if((!state.year||String(q.year)===state.year)&&(!state.type||q.type===state.type)){ids.add(q.id);questionIds.add(q.id);}groupCount+=groups.size;card.querySelector('[data-exam-count]')!.textContent=`${groups.size} 类匹配考法 · ${ids.size} 条对应记录`;}
+  document.querySelectorAll<HTMLElement>('[data-exam-chapter]').forEach(section=>section.hidden=!matches.some(t=>t.chapter===section.dataset.examChapter));
+  document.querySelector('#exam-result-count')!.textContent=`${matches.length} 个知识点 · ${groupCount} 类考法 · ${questionIds.size} 条对应记录`;document.querySelector<HTMLElement>('#exam-empty')!.hidden=matches.length>0;
+  if(sync){const url=new URL(location.href);for(const [key,value] of Object.entries(state)){value?url.searchParams.set(key,String(value)):url.searchParams.delete(key);}history.replaceState(null,'',url);}}
+ document.querySelectorAll<HTMLAnchorElement>('[data-exam-jump]').forEach(link=>link.addEventListener('click',()=>{(form.elements.namedItem('chapter') as HTMLSelectElement).value=link.dataset.examJump!;run();}));
+ form.addEventListener('submit',event=>{event.preventDefault();run();});form.addEventListener('change',()=>run());let timer;input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(()=>run(),150);});form.addEventListener('reset',()=>{clearTimeout(timer);setTimeout(()=>run(),0);});run(false);
+ </script>
+</Layout>

@@ -1,0 +1,11 @@
+---
+import SourceLink from './SourceLink.astro';
+import {sourceLabels} from '../lib/questions.mjs';
+import {href} from '../lib/data.mjs';
+const {question:q}=Astro.props;
+---
+<li class="exam-evidence" data-question-id={q.id}>
+ <div><strong>{q.year} 年 · {q.section}{q.number==='未编号'?'（未编号）':`第 ${q.number} 题`}</strong><span class="badge">{sourceLabels[q.sourceKind]}</span></div>
+ <p>{q.title}</p>{q.notes.length>0&&<p class="exam-caution">{q.notes.join(' ')}</p>}
+ <div class="exam-evidence-links"><SourceLink class="inline-link" source="exam" page={q.questionPage}>阅读原题 ↗</SourceLink><a class="inline-link" href={href(`questions/?year=${q.year}#${q.id}`)}>题库定位与参考答案入口 →</a></div>
+</li>

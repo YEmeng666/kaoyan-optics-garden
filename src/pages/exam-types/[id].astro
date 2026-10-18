@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ExamEvidence from '../../components/ExamEvidence.astro';
+import {examTopics} from '../../lib/exam-catalog.mjs';
+import {patterns,href} from '../../lib/data.mjs';
+import {typeLabels} from '../../lib/questions.mjs';
+import '../../styles/exam-types.css';
+export function getStaticPaths(){return examTopics.map(topic=>({params:{id:topic.id},props:{topic}}));}
+const {topic:t}=Astro.props;
+const records=t.groups.flatMap(g=>g.records);
+const nearby=examTopics.filter(k=>k.chapter===t.chapter&&k.id!==t.id);
+---
+<Layout title={`${t.title} · 真题怎么考`} active="exam-types">
+ <div class="breadcrumb"><a href={href(`exam-types/?chapter=${t.chapter}`)}>真题怎么考 · 第 {t.chapter} 章</a> / {t.title}</div>
+ <article data-pagefind-body data-pagefind-weight="0.2"><section class="page-heading"><p class="eyebrow" data-pagefind-meta="type">知识点考法 / 第 {t.chapter} 章</p><h1 data-pagefind-meta="title">{t.title}，真题怎么考？</h1><p>{t.groups.length} 类已收录考法 · {records.length} 条题目记录。下面的设问是概括标题，完整题干、图和条件以原 PDF 为准。</p></section>
+ <p class="notice">题目依据来自现有汇编与回忆版索引；“先做什么、为什么、易错点”是本站整理的解题建议，不是官方答案。记录数不等于独立核实考频，也不用于预测下一次考试。</p>
+ <div class="chips"><a class="chip" href={href(`knowledge/${t.id}/`)}>复习知识与公式 →</a><a class="chip" href={href(`study/?topic=${t.id}`)}>背公式与辅助练习 →</a><a class="chip" href={href(`questions/?chapter=${t.chapter}`)}>本章全部真题 →</a></div>
+ {t.groups.length>0?<><nav class="exam-type-toc" aria-label="本知识点的考法">{t.groups.map(g=><a href={`#${g.id}`}>{g.title}<span>{g.records.length} 条记录</span></a>)}</nav>{t.groups.map(g=><section class="exam-type-detail" id={g.id}>
+  <p class="eyebrow">实际出现题型：{[...new Set(g.records.map(q=>typeLabels[q.type]))].join(' / ')}</p><h2>{g.title}</h2>
+  <p class="exam-years">收录年份：{g.years.join('、')}</p><dl class="exam-method"><dt>题目怎么问</dt><dd>{g.asks}</dd><dt>第一步怎么做</dt><dd>{g.first}</dd><dt>为什么先这样想</dt><dd>{g.reason}</dd><dt>容易混淆的地方</dt><dd>{g.trap}</dd></dl>
+  <p class="source">以上是这一类题的建模提示；具体小问仍需回到原题核对条件，综合题可能涉及其他知识点。</p>
+  {g.patterns.length>0&&<p>继续看完整方法：{g.patterns.map(id=><a class="exam-method-link" href={href(`patterns/${id}/`)}>{patterns.find(p=>p.id===id)?.title} →</a>)}</p>}
+  <h3>历年题目证据</h3><ul class="exam-evidence-list">{g.records.slice(0,3).map(q=><ExamEvidence question={q}/>)}</ul>
+  {g.records.length>3&&<details class="exam-more"><summary>展开其余 {g.records.length-3} 条，查看每年的具体设问与原题</summary><ul class="exam-evidence-list">{g.records.slice(3).map(q=><ExamEvidence question={q}/>)}</ul></details>}
+ </section>)}</>:<section class="exam-type-detail"><h2>尚未收录可直接对应的考例</h2><p>当前索引中没有直接归在本专题下的已识别真题。保留这个专题入口，方便继续复习；这不表示该知识点不考，也不把相邻主题的题目当成直接证据。</p><p><a href={href(`knowledge/${t.id}/`)}>先复习本专题的原理与例题 →</a></p></section>}
+ <section data-pagefind-ignore><h2>本章其他知识点怎么考</h2><div class="related-list">{nearby.map(k=><a class="related-link" href={href(`exam-types/${k.id}/`)}><span>{k.title}</span><span>{k.groups.length} 类考法 →</span></a>)}</div></section></article>
+</Layout>

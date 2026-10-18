@@ -1,0 +1,1602 @@
+{
+  "version": 1,
+  "basis": "按现有汇编与回忆题的已索引概括标题逐条归类；不是官方题型或未来考试预测。",
+  "assignments": [
+    {
+      "questionId": "2008-choice-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2008-choice-2",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2008-choice-3",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2008-choice-4",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2008-choice-5",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2008-choice-6",
+      "typeId": "jones"
+    },
+    {
+      "questionId": "2008-choice-7",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2008-choice-8",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2008-choice-9",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2008-choice-10",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2008-choice-11",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2008-choice-12",
+      "typeId": "zones-focus"
+    },
+    {
+      "questionId": "2008-choice-13",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2008-choice-14",
+      "typeId": "scattering-intensity"
+    },
+    {
+      "questionId": "2008-choice-15",
+      "typeId": "film-color"
+    },
+    {
+      "questionId": "2008-choice-16",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2008-choice-17",
+      "typeId": "multi-compare"
+    },
+    {
+      "questionId": "2008-choice-18",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2008-choice-19",
+      "typeId": "spatial-coherence"
+    },
+    {
+      "questionId": "2008-choice-20",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2008-mixed-1",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2008-mixed-2",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2008-mixed-3",
+      "typeId": "newton-overlap"
+    },
+    {
+      "questionId": "2008-mixed-4",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2008-mixed-5",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2008-mixed-6",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2008-mixed-7",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2008-mixed-8",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2008-mixed-9",
+      "typeId": "scattering-intensity"
+    },
+    {
+      "questionId": "2008-mixed-10",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2008-mixed-11",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2009-choice-1",
+      "typeId": "wedge"
+    },
+    {
+      "questionId": "2009-choice-2",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2009-choice-3",
+      "typeId": "multi-compare"
+    },
+    {
+      "questionId": "2009-choice-4",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2009-choice-5",
+      "typeId": "aperture-shape"
+    },
+    {
+      "questionId": "2009-choice-6",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2009-choice-7",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2009-choice-8",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2009-choice-9",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2009-choice-10",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2009-choice-11",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2009-choice-12",
+      "typeId": "scattering-intensity"
+    },
+    {
+      "questionId": "2009-choice-13",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2009-choice-14",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2009-choice-15",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2009-choice-16",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2009-choice-17",
+      "typeId": "wedge"
+    },
+    {
+      "questionId": "2009-choice-18",
+      "typeId": "fp-order"
+    },
+    {
+      "questionId": "2009-choice-19",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2009-choice-20",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2009-mixed-1",
+      "typeId": "polar-degree"
+    },
+    {
+      "questionId": "2009-mixed-2",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2009-mixed-3",
+      "typeId": "wedge"
+    },
+    {
+      "questionId": "2009-mixed-4",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2009-mixed-5",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2009-mixed-6",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2009-mixed-7",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2009-mixed-8",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2009-mixed-9",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2009-mixed-10",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2010-choice-1",
+      "typeId": "wedge"
+    },
+    {
+      "questionId": "2010-choice-2",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2010-choice-3",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2010-choice-4",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2010-choice-5",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2010-choice-6",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2010-choice-7",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2010-choice-8",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2010-choice-9",
+      "typeId": "electro-optic"
+    },
+    {
+      "questionId": "2010-choice-10",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2010-choice-11",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2010-choice-12",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2010-choice-13",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2010-choice-14",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2010-choice-15",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2010-choice-16",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2010-choice-17",
+      "typeId": "fp-order"
+    },
+    {
+      "questionId": "2010-choice-18",
+      "typeId": "fp-order"
+    },
+    {
+      "questionId": "2010-choice-19",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2010-choice-20",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2010-choice-21",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2010-mixed-1",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2010-mixed-2",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2010-mixed-3",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2010-mixed-4",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2010-mixed-5",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2010-mixed-6",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2010-mixed-7",
+      "typeId": "scattering-intensity"
+    },
+    {
+      "questionId": "2010-mixed-8",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2010-mixed-9",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2010-mixed-10",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2011-choice-1",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2011-choice-2",
+      "typeId": "multi-compare"
+    },
+    {
+      "questionId": "2011-choice-3",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2011-choice-4",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2011-choice-5",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2011-choice-6",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2011-choice-7",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2011-choice-8",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2011-choice-9",
+      "typeId": "electro-optic"
+    },
+    {
+      "questionId": "2011-choice-10",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2011-choice-11",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2011-choice-12",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2011-choice-13",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2011-choice-14",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2011-choice-15",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2011-choice-16",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2011-choice-17",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2011-choice-18",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2011-choice-19",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2011-choice-20",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2011-mixed-1",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2011-mixed-2",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2011-mixed-3",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2011-mixed-4",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2011-mixed-5",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2011-mixed-6",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2011-mixed-7",
+      "typeId": "two-fringes"
+    },
+    {
+      "questionId": "2011-mixed-8",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2011-mixed-9",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2011-mixed-10",
+      "typeId": "waveplate-identify"
+    },
+    {
+      "questionId": "2012-choice-1",
+      "typeId": "field-energy"
+    },
+    {
+      "questionId": "2012-choice-2",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2012-choice-3",
+      "typeId": "field-energy"
+    },
+    {
+      "questionId": "2012-choice-4",
+      "typeId": "interface-phase"
+    },
+    {
+      "questionId": "2012-choice-5",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2012-choice-6",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2012-choice-7",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2012-choice-8",
+      "typeId": "film-color"
+    },
+    {
+      "questionId": "2012-choice-9",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2012-choice-10",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2012-choice-11",
+      "typeId": "spatial-coherence"
+    },
+    {
+      "questionId": "2012-choice-12",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2012-choice-13",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2012-choice-14",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2012-choice-15",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2012-choice-16",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2012-choice-17",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2012-choice-18",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2012-choice-19",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2012-choice-20",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2012-choice-21",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2012-choice-22",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2012-choice-23",
+      "typeId": "absorption-coefficient"
+    },
+    {
+      "questionId": "2012-choice-24",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2012-choice-25",
+      "typeId": "dispersion-velocity"
+    },
+    {
+      "questionId": "2012-short-1",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2012-short-2",
+      "typeId": "crystal-sign"
+    },
+    {
+      "questionId": "2012-short-3",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2012-short-4",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2012-short-5",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2012-short-6",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2012-calculation-1",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2012-calculation-2",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2012-calculation-3",
+      "typeId": "polar-degree"
+    },
+    {
+      "questionId": "2012-calculation-4",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2012-calculation-5",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2012-calculation-6",
+      "typeId": "electro-optic"
+    },
+    {
+      "questionId": "2013-choice-1",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2013-choice-2",
+      "typeId": "interface-phase"
+    },
+    {
+      "questionId": "2013-choice-3",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2013-choice-4",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2013-choice-5",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2013-choice-6",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2013-choice-7",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2013-choice-8",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2013-choice-9",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2013-choice-10",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2013-choice-11",
+      "typeId": "temporal-coherence"
+    },
+    {
+      "questionId": "2013-choice-12",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2013-choice-13",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2013-choice-14",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2013-choice-15",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2013-choice-16",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2013-choice-17",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2013-choice-18",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2013-choice-19",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2013-choice-20",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2013-choice-21",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2013-choice-22",
+      "typeId": "electro-optic"
+    },
+    {
+      "questionId": "2013-choice-23",
+      "typeId": "absorption-coefficient"
+    },
+    {
+      "questionId": "2013-choice-24",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2013-choice-25",
+      "typeId": "dispersion-velocity"
+    },
+    {
+      "questionId": "2013-short-1",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2013-short-2",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2013-short-3",
+      "typeId": "zones-focus"
+    },
+    {
+      "questionId": "2013-short-4",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2013-short-5",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2013-short-6",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2013-calculation-1",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2013-calculation-2",
+      "typeId": "two-visibility"
+    },
+    {
+      "questionId": "2013-calculation-3",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2013-calculation-4",
+      "typeId": "waveplate-identify"
+    },
+    {
+      "questionId": "2013-calculation-5",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2013-calculation-6",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2014-choice-1",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2014-choice-2",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2014-choice-3",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2014-choice-4",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2014-choice-5",
+      "typeId": "interface-boundary"
+    },
+    {
+      "questionId": "2014-choice-6",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2014-choice-7",
+      "typeId": "polar-degree"
+    },
+    {
+      "questionId": "2014-choice-8",
+      "typeId": "dispersion-velocity"
+    },
+    {
+      "questionId": "2014-choice-9",
+      "typeId": "interface-phase"
+    },
+    {
+      "questionId": "2014-choice-10",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2014-choice-11",
+      "typeId": "film-color"
+    },
+    {
+      "questionId": "2014-choice-12",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2014-choice-13",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2014-choice-14",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2014-choice-15",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2014-choice-16",
+      "typeId": "multi-compare"
+    },
+    {
+      "questionId": "2014-choice-17",
+      "typeId": "spatial-coherence"
+    },
+    {
+      "questionId": "2014-choice-18",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2014-choice-19",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2014-choice-20",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2014-choice-21",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2014-choice-22",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2014-choice-23",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2014-choice-24",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2014-choice-25",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2014-short-1",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2014-short-2",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2014-short-3",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2014-short-4",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2014-short-5",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2014-short-6",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2014-calculation-1",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2014-calculation-2",
+      "typeId": "two-visibility"
+    },
+    {
+      "questionId": "2014-calculation-3",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2014-calculation-4",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2014-calculation-5",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2014-calculation-6",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2015-choice-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2015-choice-2",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2015-choice-3",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2015-choice-4",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2015-choice-5",
+      "typeId": "coherent-source"
+    },
+    {
+      "questionId": "2015-choice-6",
+      "typeId": "two-visibility"
+    },
+    {
+      "questionId": "2015-choice-7",
+      "typeId": "coating"
+    },
+    {
+      "questionId": "2015-choice-8",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2015-choice-9",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2015-choice-10",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2015-choice-11",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2015-choice-12",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2015-choice-13",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2015-choice-14",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2015-choice-15",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2015-choice-16",
+      "typeId": "jones"
+    },
+    {
+      "questionId": "2015-choice-17",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2015-choice-18",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2015-choice-19",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2015-choice-20",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2015-short-1",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2015-short-2",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2015-short-3",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2015-short-4",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2015-short-5",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2015-calculation-1",
+      "typeId": "wave-spectrum"
+    },
+    {
+      "questionId": "2015-calculation-2",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2015-calculation-3",
+      "typeId": "grating-blaze"
+    },
+    {
+      "questionId": "2015-calculation-4",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2015-calculation-5",
+      "typeId": "polar-degree"
+    },
+    {
+      "questionId": "2016-choice-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2016-choice-2",
+      "typeId": "field-energy"
+    },
+    {
+      "questionId": "2016-choice-3",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2016-choice-4",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2016-choice-5",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2016-choice-6",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2016-choice-7",
+      "typeId": "film-color"
+    },
+    {
+      "questionId": "2016-choice-8",
+      "typeId": "two-fringes"
+    },
+    {
+      "questionId": "2016-choice-9",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2016-choice-10",
+      "typeId": "wedge"
+    },
+    {
+      "questionId": "2016-choice-11",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2016-choice-12",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2016-choice-13",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2016-choice-14",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2016-choice-15",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2016-choice-16",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2016-choice-17",
+      "typeId": "crystal-vectors"
+    },
+    {
+      "questionId": "2016-choice-18",
+      "typeId": "crystal-index"
+    },
+    {
+      "questionId": "2016-choice-19",
+      "typeId": "waveplate-identify"
+    },
+    {
+      "questionId": "2016-choice-20",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2016-choice-21",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2016-choice-22",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2016-choice-23",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2016-choice-24",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2016-choice-25",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2016-short-1",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2016-short-2",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2016-short-3",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2016-short-4",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2016-short-5",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2016-short-6",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2016-calculation-1",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2016-calculation-2",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2016-calculation-3",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2016-calculation-4",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2016-calculation-5",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2016-calculation-6",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2018-short-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2018-short-2",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2018-short-3",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2018-short-4",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2018-short-5",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2018-calculation-1",
+      "typeId": "crystal-split"
+    },
+    {
+      "questionId": "2018-calculation-2",
+      "typeId": "newton-overlap"
+    },
+    {
+      "questionId": "2018-calculation-3",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2019-choice-1",
+      "typeId": "film-phase"
+    },
+    {
+      "questionId": "2019-choice-2",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2019-choice-3",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2019-choice-4",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2019-choice-5",
+      "typeId": "jones"
+    },
+    {
+      "questionId": "2019-short-1",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2019-short-2",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2019-short-3",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2019-short-4",
+      "typeId": "slit-pattern"
+    },
+    {
+      "questionId": "2019-short-5",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2019-calculation-1",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2019-calculation-2",
+      "typeId": "two-fringes"
+    },
+    {
+      "questionId": "2019-calculation-3",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2019-calculation-4",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2019-calculation-5",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2020-choice-unnumbered",
+      "typeId": "spatial-coherence"
+    },
+    {
+      "questionId": "2020-short-1",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2020-short-2",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2020-short-3",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2020-short-4",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2020-short-5",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2020-short-6",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2020-calculation-1",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2020-calculation-2",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2020-calculation-3",
+      "typeId": "polar-interference"
+    },
+    {
+      "questionId": "2020-calculation-4",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2021-short-1",
+      "typeId": "polar-identify"
+    },
+    {
+      "questionId": "2021-short-2",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2021-short-3",
+      "typeId": "coherence-compare"
+    },
+    {
+      "questionId": "2021-short-4",
+      "typeId": "zones-focus"
+    },
+    {
+      "questionId": "2021-short-5",
+      "typeId": "crystal-sign"
+    },
+    {
+      "questionId": "2021-short-6",
+      "typeId": "loss-distinction"
+    },
+    {
+      "questionId": "2021-calculation-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2021-calculation-2",
+      "typeId": "fp-order"
+    },
+    {
+      "questionId": "2021-calculation-3",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2021-calculation-4",
+      "typeId": "multiple-slits"
+    },
+    {
+      "questionId": "2021-calculation-5",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2021-calculation-6",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2022-choice-1",
+      "typeId": "jones"
+    },
+    {
+      "questionId": "2022-choice-2",
+      "typeId": "newton"
+    },
+    {
+      "questionId": "2022-choice-3",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2022-choice-4",
+      "typeId": "faraday"
+    },
+    {
+      "questionId": "2022-choice-5",
+      "typeId": "grating-order"
+    },
+    {
+      "questionId": "2022-choice-6",
+      "typeId": "film-color"
+    },
+    {
+      "questionId": "2022-choice-7",
+      "typeId": "field-energy"
+    },
+    {
+      "questionId": "2022-choice-8",
+      "typeId": "two-fringes"
+    },
+    {
+      "questionId": "2022-choice-9",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2022-short-1",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2022-short-2",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2022-short-3",
+      "typeId": "film-thickness"
+    },
+    {
+      "questionId": "2022-short-4",
+      "typeId": "zones-focus"
+    },
+    {
+      "questionId": "2022-short-5",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2022-short-6",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2022-short-7",
+      "typeId": "waveplate-identify"
+    },
+    {
+      "questionId": "2022-short-8",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2022-calculation-1",
+      "typeId": "tir-condition"
+    },
+    {
+      "questionId": "2022-calculation-2",
+      "typeId": "waveplate-design"
+    },
+    {
+      "questionId": "2022-calculation-3",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2022-calculation-4",
+      "typeId": "two-visibility"
+    },
+    {
+      "questionId": "2022-calculation-5",
+      "typeId": "aperture-resolution"
+    },
+    {
+      "questionId": "2022-calculation-6",
+      "typeId": "michelson"
+    },
+    {
+      "questionId": "2023-choice-1",
+      "typeId": "polar-components"
+    },
+    {
+      "questionId": "2023-choice-2",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2023-choice-3",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2023-choice-4",
+      "typeId": "tir-field"
+    },
+    {
+      "questionId": "2023-choice-5",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2023-choice-6",
+      "typeId": "fp-performance"
+    },
+    {
+      "questionId": "2023-choice-7",
+      "typeId": "two-fringes"
+    },
+    {
+      "questionId": "2023-choice-8",
+      "typeId": "spatial-coherence"
+    },
+    {
+      "questionId": "2023-choice-9",
+      "typeId": "diffraction-model"
+    },
+    {
+      "questionId": "2023-choice-10",
+      "typeId": "zones-intensity"
+    },
+    {
+      "questionId": "2023-choice-11",
+      "typeId": "polar-chain"
+    },
+    {
+      "questionId": "2023-choice-12",
+      "typeId": "electro-optic"
+    },
+    {
+      "questionId": "2023-choice-14",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2023-choice-15",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2023-choice-16",
+      "typeId": "waveplate-output"
+    },
+    {
+      "questionId": "2023-choice-17",
+      "typeId": "absorption-coefficient"
+    },
+    {
+      "questionId": "2023-choice-18",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2023-choice-19",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2023-choice-20",
+      "typeId": "scattering-spectrum"
+    },
+    {
+      "questionId": "2023-choice-21",
+      "typeId": "dispersion-class"
+    },
+    {
+      "questionId": "2023-short-1",
+      "typeId": "brewster"
+    },
+    {
+      "questionId": "2023-short-2",
+      "typeId": "scattering-color"
+    },
+    {
+      "questionId": "2023-short-3",
+      "typeId": "absorption-color"
+    },
+    {
+      "questionId": "2023-short-4",
+      "typeId": "grating-resolution"
+    },
+    {
+      "questionId": "2023-short-5",
+      "typeId": "crystal-sign"
+    },
+    {
+      "questionId": "2023-short-6",
+      "typeId": "interference-condition"
+    },
+    {
+      "questionId": "2023-calculation-1",
+      "typeId": "field-wave"
+    },
+    {
+      "questionId": "2023-calculation-2",
+      "typeId": "interface-polar"
+    },
+    {
+      "questionId": "2023-calculation-4",
+      "typeId": "slit-polar"
+    },
+    {
+      "questionId": "2023-calculation-5",
+      "typeId": "polar-interference"
+    }
+  ]
+}
