@@ -1,0 +1,23 @@
+---
+import {studyTopics} from '../lib/study-data.mjs';
+import {href} from '../lib/data.mjs';
+const {id,editable=false}=Astro.props;
+const topic=studyTopics.find(t=>t.id===id);
+---
+<section class:list={['topic-progress',{'topic-progress-editable':editable}]} data-study-topic={id} data-pagefind-ignore aria-label={`${topic.title}的掌握进度`}>
+ <div class="progress-heading"><span>{editable?'我的掌握进度':'掌握进度'}</span><strong data-progress-value>未记录</strong></div>
+ <progress max="100" value="0" aria-label={`${topic.title}掌握进度`}></progress>
+ <p class="source" data-progress-detail>理解 · 公式 · 解题</p>
+ {editable&&<><label>理解程度 <select data-concept-level aria-label="理解程度"><option value="0">未掌握</option><option value="1">看解析能理解</option><option value="2">能独立说出条件</option><option value="3">能解释原理与易错点</option></select></label><p><a class="button secondary" href={href(`study/?topic=${id}`)}>背本节公式与练题 →</a></p><p class="source">进度来自自评：理解 20%、公式 40%、解题 40%；无公式的主题按剩余权重计算。它表示复习记录，不是考试正确率。</p><p class="source" data-study-message role="status"></p></>}
+</section>
+<script>
+import {topicProgress,setConcept,LEVELS} from '../lib/study.mjs';
+import {createStudyStore} from '../lib/study-storage.mjs';
+const catalog=JSON.parse(document.querySelector('#study-progress-catalog')!.textContent!);
+const store=createStudyStore(catalog.cards.map(c=>c.id),catalog.topics.map(t=>t.id));
+const panels=[...document.querySelectorAll<HTMLElement>('[data-study-topic]')];
+function message(text){document.querySelectorAll('[data-study-message]').forEach(el=>el.textContent=text);}
+function render(){try{const state=store.read();for(const panel of panels){const id=panel.dataset.studyTopic,topic=catalog.topics.find(t=>t.id===id),p=topicProgress(topic,catalog.cards,state);panel.querySelector('progress')!.value=p.percent;panel.querySelector('[data-progress-value]')!.textContent=`${p.percent}%`;panel.querySelector('[data-progress-detail]')!.textContent=`理解：${LEVELS[state.concepts[id]?.level||0]} · 已练 ${p.learned}/${p.total} 卡${p.due?` · ${p.due} 卡待复习`:''}`;const select=panel.querySelector<HTMLSelectElement>('[data-concept-level]');if(select)select.value=String(state.concepts[id]?.level||0);}}catch{message('无法读取学习记录。请检查浏览器存储权限；已有数据未覆盖。');}}
+for(const panel of panels)panel.querySelector('[data-concept-level]')?.addEventListener('change',event=>{try{store.update(state=>setConcept(state,panel.dataset.studyTopic,Number((event.target as HTMLSelectElement).value)));message('理解程度已保存在此浏览器。');}catch{message('保存失败，请允许此网站使用浏览器存储。');render();}});
+window.addEventListener('storage',render);window.addEventListener('study-change',render);render();
+</script>

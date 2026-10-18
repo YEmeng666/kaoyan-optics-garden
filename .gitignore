@@ -10,6 +10,7 @@ dist/
 !public/materials/exams/*.pdf
 *.docx
 private/
+tmp/
 _ocr_preview/
 .openai/*
 !.openai/hosting.json

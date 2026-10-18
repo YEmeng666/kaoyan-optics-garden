@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Formula from '../../components/Formula.astro';
 import KnowledgePractice from '../../components/KnowledgePractice.astro';
+import TopicProgress from '../../components/TopicProgress.astro';
 import questionData from '../../../content/questions.json';
 import practiceData from '../../../content/knowledge-practice.mjs';
 import {knowledge,patterns,formulas,course,href} from '../../lib/data.mjs';
@@ -17,7 +18,7 @@ const pastQuestions=questionData.questions.filter(q=>q.sourceKind!=='approximati
 const practice=practiceData[k.id];
 const practicePattern=practice.pattern?patterns.find(p=>p.id===practice.pattern):null;
 ---
-<Layout title={k.title} active="knowledge"><div class="breadcrumb" data-pagefind-ignore><a href={href(`chapters/${k.chapter}/`)}>{chapter.title}</a> / {k.title}</div><article class="prose" data-pagefind-body><span class="badge" data-pagefind-meta="type">知识点</span><span class="badge">{k.label}</span><Content/><p class="source">依据与复核定位：{k.source}。推导与补充解释另行标记。</p>
+<Layout title={k.title} active="knowledge" studyCatalog><div class="breadcrumb" data-pagefind-ignore><a href={href(`chapters/${k.chapter}/`)}>{chapter.title}</a> / {k.title}</div><TopicProgress id={k.id} editable/><article class="prose" data-pagefind-body><span class="badge" data-pagefind-meta="type">知识点</span><span class="badge">{k.label}</span><Content/><p class="source">依据与复核定位：{k.source}。推导与补充解释另行标记。</p>
 {k.id==='two-beam'&&<figure class="diagram"><svg viewBox="0 0 600 210" role="img" aria-label="同一光源分成两条路径后在观察点叠加的示意图"><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#56744c"/></marker></defs><g fill="none" stroke="#56744c" stroke-width="2" marker-end="url(#arrow)"><path d="M75 105 L210 45 L495 105"/><path d="M75 105 L210 165 L495 105"/></g><g fill="#194d3b"><circle cx="75" cy="105" r="6"/><circle cx="500" cy="105" r="6"/></g><g font-size="15" fill="#24372e"><text x="45" y="137">同一光源</text><text x="237" y="39">路径 1：光程 + 附加相位</text><text x="237" y="185">路径 2：光程 + 附加相位</text><text x="470" y="137">观察点</text></g></svg><figcaption>【AI补充解释】概念示意，不按实际装置比例绘制。只有在同一比较基准上才能相减两路相位。</figcaption></figure>}
 {linkedFormulaIds.length>0&&<><h2>公式与适用条件</h2>{linkedFormulaIds.map(id=><Formula formula={formulas.find(f=>f.id===id)}/>)}</>}
 <KnowledgePractice record={practice} pattern={practicePattern}/>
